@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Content &#8212; Wed, Oct 28, 2020</title>
+    <title>Content &#8212; A1 Tone Discrimination</title>
     
   <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -82,7 +82,7 @@
   <img src="_static/logo.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">Wed, Oct 28, 2020</h1>
+  <h1 class="site-logo" id="site-title">A1 Tone Discrimination</h1>
   
 </a>
 </div>
@@ -119,6 +119,16 @@
    <li class="toctree-l2">
     <a class="reference internal" href="lda.html">
      Linear Discriminant Analysis (LDA)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="clf-limited.html">
+     Classification Analysis (with limited time interval) + supervised PCA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mlp.html">
+     Multi-layer Perceptron analysis (MLP)
     </a>
    </li>
   </ul>
@@ -234,56 +244,36 @@
 <li><p>Data processing</p></li>
 <li><p>Classification Analysis</p></li>
 <li><p>Linear Discriminant Analysis</p></li>
+<li><p>Clf analysis (with limited time range) + supervised PCA</p></li>
+<li><p>Neural Net Analysis</p></li>
 </ol>
 <div class="section" id="what-s-new">
 <h2>What’s new:<a class="headerlink" href="#what-s-new" title="Permalink to this headline">¶</a></h2>
-<p>LDA with different dimensionalities</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Improvement in best regularization hyperparameter and best
-timepoint selection.  In this version I&#39;m smoothing the scores
-by calculating a running average using a width 5 kernel.
-This way, selected timepoints end up more real.  A drawback of
-doing this was a ~0.05 drop in performance on average.
+<p>Limited best timepoints</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>I choose best time points in different intervals and compare performance
+drops.  Overall, limiting the time period leads to a drop in
+performance; however it still remains well above chance level.
 </pre></div>
 </div>
-<p>B) Excitations &amp; Suppression,</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Separately visualizing cells that are on average excited (EXC)
-or suppresed (SUP) during a trial.  The tag was determined by first
-averaging DFFs for a given cell during trials of the same type. Then,
-calling a cell EXC if the maximum absolute value of this
-average was positive, and SUP if it was negative.
-Moreover, distribution of EXC/SUP cells are plotted for all
-tial types (more discussion in the book).
+<p>Supervised PCA</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Unfortunately, the algorithm doesn&#39;t work here for two reasons.  First, we
+are limited with number of samples which can be as low as 3 in some cases.
+In this example, the lowesr number of PC dimensions we can have is 3, which
+prevents us from applying this systematically to all the data that comes with
+varying number of sampels for different tasks/experiments.  Another reason is
+in the reservoir paper, this algorithm was applied to a nonlinear, high dim
+expansion of the raw signal.  Here we only have the raw signal and applying
+PCA to that to achieve dimensionality reduction hurts performance a lot.
+
+For these reasons, the supervised PCA algorithm does not seem appropriate for
+studying the dimensioanlity of the Kanold data.
 </pre></div>
 </div>
-<p>C) Shuffled LDA,</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>As anticipated, shuffling the training set labels completely destorys
-the coherence we observe for the true dataset, proving those diverging
-trajectories are real.
+<p>Neural Net analysis</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>To have something about dimensionalities, I performed multi-layer perceptrion
+analysis.  Please see the results in the last MLP section.
 </pre></div>
 </div>
-<p>D) LDA with different number of dimensions,</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>summary: performance does not change that much, trajectories are
-more separable for larger dimensions (obviously)
-</pre></div>
-</div>
-<p>E) Calcium temporal convolution: <em>Calium Tent</em>,</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Discussed the temporal convolution properties of Ca traces
-with Nik.  In neuroscience people typically use genetically encoded
-calcium indicators rather than chemical, which is what Nik also uses.
-This choice has many benefits such as a more-or-less identical
-convolution filter for cells.  The decay time is roughly a few
-hundred milliseconds; however, it is still not entirely clear how can
-we use this information in our analysis.  For now, we can keep this
-piece of information in mind when interpreting the results.
-Hopefully, later we can build a more advanced model that
-automatically learns this dynamcis and separates it from other
-sources of variation.
-</pre></div>
-</div>
-<p>Lastly, Nik suggested a paper about this:
-<a class="reference external" href="https://www.nature.com/articles/nature12354">Ultrasensitive fluorescent proteins for imaging neuronal activity</a>.
-I saw this paper before, but haven’t read it in detail yet.
-Will try to learn the main points that will be relevant for us.</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Classification Analysis &#8212; Wed, Oct 28, 2020</title>
+    <title>Classification Analysis &#8212; A1 Tone Discrimination</title>
     
   <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -82,7 +82,7 @@
   <img src="_static/logo.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">Wed, Oct 28, 2020</h1>
+  <h1 class="site-logo" id="site-title">A1 Tone Discrimination</h1>
   
 </a>
 </div>
@@ -119,6 +119,16 @@
    <li class="toctree-l2">
     <a class="reference internal" href="lda.html">
      Linear Discriminant Analysis (LDA)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="clf-limited.html">
+     Classification Analysis (with limited time interval) + supervised PCA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mlp.html">
+     Multi-layer Perceptron analysis (MLP)
     </a>
    </li>
   </ul>
@@ -247,13 +257,11 @@
     <a class="reference internal nav-link" href="#box-plots">
      1) Box plots
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#difference-in-individual-subjects">
-       Difference in individual subjects
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#difference-in-individual-subjects">
+     Difference in individual subjects
+    </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#best-reg-and-timepoint-selection">
@@ -355,6 +363,7 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;/home/hadivafa/Dropbox/git/A1ToneDiscrimination/&#39;</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">utils.plot_functions</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">utils.generic_utils</span> <span class="kn">import</span> <span class="n">load_dfs</span><span class="p">,</span> <span class="n">get_tasks</span><span class="p">,</span> <span class="n">merge_dicts</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -382,25 +391,9 @@
 
 <span class="n">nb_std</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">h_load_file</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">processed_dir</span><span class="p">,</span> <span class="s2">&quot;organized_nb_std=</span><span class="si">{:d}</span><span class="s2">.h5&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nb_std</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_dir</span> <span class="o">=</span> <span class="s1">&#39;/home/hadivafa/Documents/Kanold/results/svm/v1_l1_full&#39;</span>
 
-<span class="n">performances</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">run_dir</span><span class="p">,</span> <span class="s2">&quot;performances_[2020_10_23].df&quot;</span><span class="p">))</span>
-<span class="n">coeffs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">run_dir</span><span class="p">,</span> <span class="s2">&quot;coeffs_[2020_10_23].df&quot;</span><span class="p">))</span>
-<span class="n">performances_filtered</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">run_dir</span><span class="p">,</span> <span class="s2">&quot;performances_filtered_[2020_10_23].df&quot;</span><span class="p">))</span>
-<span class="n">coeffs_filtered</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">run_dir</span><span class="p">,</span> <span class="s2">&quot;coeffs_filtered_[2020_10_23].df&quot;</span><span class="p">))</span>
-
-<span class="n">df_all</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;performances&#39;</span><span class="p">:</span> <span class="n">performances</span><span class="p">,</span>
-    <span class="s1">&#39;performances_filtered&#39;</span><span class="p">:</span> <span class="n">performances_filtered</span><span class="p">,</span>
-    <span class="s1">&#39;coeffs&#39;</span><span class="p">:</span> <span class="n">coeffs</span><span class="p">,</span>
-    <span class="s1">&#39;coeffs_filtered&#39;</span><span class="p">:</span> <span class="n">coeffs_filtered</span><span class="p">,</span>
-<span class="p">}</span>
+<span class="n">run_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;results/svm/v1_l1_full&#39;</span><span class="p">)</span>
+<span class="n">df_all</span> <span class="o">=</span> <span class="n">load_dfs</span><span class="p">(</span><span class="n">run_dir</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -411,8 +404,7 @@
 <p>Here are the tasks:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">utils.generic_utils</span> <span class="kn">import</span> <span class="n">get_tasks</span>
-<span class="n">get_tasks</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_tasks</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -439,22 +431,13 @@
 <li><p>Middple subplot shows scores achieved by classifier at best timepoint using the best regularization hyperparameter that was tuned individually for each experiment/task pair.</p></li>
 <li><p>Percent nonzero coefficients.  As we can see, on average most neurons had zero contribution to the classification.  This is a direct consequence of using L1 regularization.</p></li>
 </ol>
-<p>A comparison between L1 and L2 and different classifiers is included below.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">importlib</span> <span class="kn">import</span> <span class="n">reload</span>
-<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">plot_functions</span>
-<span class="n">reload</span><span class="p">(</span><span class="n">plot_functions</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">utils.plot_functions</span> <span class="kn">import</span> <span class="o">*</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">mk_boxplots</span><span class="p">(</span>
     <span class="n">df_all</span><span class="o">=</span><span class="n">df_all</span><span class="p">,</span>
     <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;mcc&#39;</span><span class="p">,</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">end_time</span><span class="o">=</span><span class="mi">135</span><span class="p">,</span>
     <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span>
     <span class="n">dpi</span><span class="o">=</span><span class="mi">55</span><span class="p">,</span>
 <span class="p">)</span>
@@ -462,36 +445,37 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/clf_10_0.png" src="_images/clf_10_0.png" />
+<img alt="_images/clf_8_0.png" src="_images/clf_8_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="difference-in-individual-subjects">
-<h4>Difference in individual subjects<a class="headerlink" href="#difference-in-individual-subjects" title="Permalink to this headline">¶</a></h4>
-<p>There aren’t many different animal participants in the experiment (only 9), and the number of experiments per subject varies between 1 and 8.  Anyway, still probably there are detectable differences between individuals as this figure below suggests.</p>
-<p>Average percent nonzero might not be the best thing to look at when studying individual differences, but for example why the fit results on data from <em>ashley</em> and <em>nigel</em> lead to such sparse results, but not for <em>scabbers</em> or <em>lana</em>?  Could this be because these mice have different learning capacities?  One might expect highly trained mice will experience significant changes in the circuitry of their A1, which might lead to assining smaller networks of neurons to perform behavior related computations, which might lead to sparser coding.  Or not… Can’t make strong statements about this now.</p>
+<h3>Difference in individual subjects<a class="headerlink" href="#difference-in-individual-subjects" title="Permalink to this headline">¶</a></h3>
+<p>There are a total of 9 different animal participants in the experimen.  The number of experiments per subject varies between 1 and 8.  Figure below illustrates the number of nonzero coefficients (i.e. neurons) per animal averaged over different tasks.  The variation observed here suggests there could be meaningful differences between these individuals.</p>
+<p>Average num nonzero might not be the best thing to look at when studying individual differences, but for example why the fit results on data from <em>ashley</em>, <em>karl</em> or <em>nigel</em> lead to such sparse results, but not for <em>gabby</em> or <em>scabbers</em>?  Could this be because these mice have different learning capacities?  One might expect highly trained mice will experience significant changes in the circuitry of their A1, which might lead to assining smaller networks of neurons to perform behavior related computations, which might lead to sparser coding.  Or not… Can’t make strong statements about this now.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 <span class="n">subject_data</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
 
-<span class="n">names</span> <span class="o">=</span> <span class="n">coeffs_filtered</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">names</span> <span class="o">=</span> <span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;coeffs_filtered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
-    <span class="n">mean_nonzero</span> <span class="o">=</span> <span class="n">coeffs_filtered</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">coeffs_filtered</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;percent_nonzero&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">cond</span> <span class="o">=</span> <span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;coeffs_filtered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span>
+    <span class="n">mean_nb_nonzero</span> <span class="o">=</span> <span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;coeffs_filtered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cond</span><span class="p">,</span> <span class="s2">&quot;nb_nonzero&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
     <span class="n">sbj</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">subject_data</span><span class="p">[</span><span class="n">sbj</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean_nonzero</span><span class="p">)</span>
-    
+    <span class="n">subject_data</span><span class="p">[</span><span class="n">sbj</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean_nb_nonzero</span><span class="p">)</span>
+
 <span class="n">subject_data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">subject_data</span><span class="p">)</span>
 
 <span class="n">dictlist</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">subject_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="n">dictlist</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;subject&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="s1">&#39;avg_percent_nonzero&#39;</span><span class="p">:</span> <span class="n">v</span><span class="p">})</span>
+    <span class="n">dictlist</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;subject&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="s1">&#39;avg_nb_nonzero&#39;</span><span class="p">:</span> <span class="n">v</span><span class="p">})</span>
 
-<span class="kn">from</span> <span class="nn">utils.generic_utils</span> <span class="kn">import</span> <span class="n">merge_dicts</span>
 <span class="n">merged</span> <span class="o">=</span> <span class="n">merge_dicts</span><span class="p">(</span><span class="n">dictlist</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">merged</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;subject&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;avg_percent_nonzero&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;subject&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;avg_nb_nonzero&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -506,8 +490,7 @@
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<img alt="_images/clf_12_3.png" src="_images/clf_12_3.png" />
-</div>
+<img alt="_images/clf_10_3.png" src="_images/clf_10_3.png" />
 </div>
 </div>
 </div>
@@ -531,7 +514,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;ken_2016-08-20&quot;</span>
-<span class="n">df_p</span> <span class="o">=</span> <span class="n">performances</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">performances</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">]</span>
+<span class="n">df_p</span> <span class="o">=</span> <span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;performances&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;performances&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">]</span>
 
 <span class="n">_</span> <span class="o">=</span> <span class="n">mk_reg_selection_plot</span><span class="p">(</span>
     <span class="n">performances</span><span class="o">=</span><span class="n">df_p</span><span class="p">,</span>
@@ -543,7 +526,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/clf_14_0.png" src="_images/clf_14_0.png" />
+<img alt="_images/clf_12_0.png" src="_images/clf_12_0.png" />
 </div>
 </div>
 <div class="section" id="tuning-regularization-hyperparameter-is-important">
@@ -554,14 +537,14 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">70</span><span class="p">)</span>
 
-<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;reg_C&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;task&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">performances_filtered</span><span class="p">,</span> <span class="n">dodge</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;reg_C&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;task&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;performances_filtered&#39;</span><span class="p">],</span> <span class="n">dodge</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/clf_16_0.png" src="_images/clf_16_0.png" />
+<img alt="_images/clf_14_0.png" src="_images/clf_14_0.png" />
 </div>
 </div>
 </div>
@@ -572,7 +555,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;ken_2016-08-20&quot;</span>
-<span class="n">df_cf</span> <span class="o">=</span> <span class="n">coeffs_filtered</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">coeffs_filtered</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">]</span>
+<span class="n">df_cf</span> <span class="o">=</span> <span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;coeffs_filtered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;coeffs_filtered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">]</span>
 
 <span class="n">_</span> <span class="o">=</span> <span class="n">mk_coeffs_importances_plot</span><span class="p">(</span>
     <span class="n">df_cf</span><span class="p">,</span>
@@ -583,7 +566,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/clf_18_0.png" src="_images/clf_18_0.png" />
+<img alt="_images/clf_16_0.png" src="_images/clf_16_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -626,8 +609,8 @@
 <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;james_2018-09-20&#39;</span>
 <span class="n">task</span> <span class="o">=</span> <span class="s1">&#39;hit/miss&#39;</span>
 
-<span class="n">cond</span> <span class="o">=</span> <span class="p">(</span><span class="n">performances_filtered</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">performances_filtered</span><span class="o">.</span><span class="n">task</span> <span class="o">==</span> <span class="n">task</span><span class="p">)</span>
-<span class="n">timepoint</span> <span class="o">=</span> <span class="n">performances_filtered</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cond</span><span class="p">,</span> <span class="s1">&#39;best_timepoint&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="n">cond</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;performances_filtered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;performances_filtered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">task</span> <span class="o">==</span> <span class="n">task</span><span class="p">)</span>
+<span class="n">timepoint</span> <span class="o">=</span> <span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;performances_filtered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cond</span><span class="p">,</span> <span class="s1">&#39;best_timepoint&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
 
 <span class="n">downsample_sizes</span><span class="o">=</span><span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 
@@ -645,7 +628,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/clf_21_0.png" src="_images/clf_21_0.png" />
+<img alt="_images/clf_19_0.png" src="_images/clf_19_0.png" />
 </div>
 </div>
 <div class="section" id="observations-fig">
@@ -663,19 +646,19 @@
 <p>Now let us have a look at an animated version of these figures.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">utils.animation</span> <span class="kn">import</span> <span class="n">mk_coarse_grained_anim</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from utils.animation import mk_coarse_grained_anim</span>
 
-<span class="n">_</span> <span class="o">=</span> <span class="n">mk_coarse_grained_anim</span><span class="p">(</span>
-    <span class="n">df_all</span><span class="p">,</span>
-    <span class="n">h_load_file</span><span class="p">,</span>
-    <span class="n">name</span><span class="p">,</span>
-    <span class="n">task</span><span class="p">,</span>
-    <span class="n">downsample_sizes</span><span class="p">,</span>
-    <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">fps</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-    <span class="n">save_file</span><span class="o">=</span><span class="s1">&#39;./anim.mp4&#39;</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="c1"># _ = mk_coarse_grained_anim(</span>
+<span class="c1">#     df_all,</span>
+<span class="c1">#     h_load_file,</span>
+<span class="c1">#     name,</span>
+<span class="c1">#     task,</span>
+<span class="c1">#     downsample_sizes,</span>
+<span class="c1">#     normalize=True,</span>
+<span class="c1">#     fps=2,</span>
+<span class="c1">#     dpi=100,</span>
+<span class="c1">#     save_file=&#39;./anim.mp4&#39;,</span>
+<span class="c1"># )</span>
 </pre></div>
 </div>
 </div>
@@ -710,8 +693,8 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;ken_2016-08-18&quot;</span>
 <span class="n">task</span> <span class="o">=</span> <span class="s1">&#39;hit/falsealarm&#39;</span>
 
-<span class="n">cond</span> <span class="o">=</span> <span class="p">(</span><span class="n">performances_filtered</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">performances_filtered</span><span class="o">.</span><span class="n">task</span> <span class="o">==</span> <span class="n">task</span><span class="p">)</span>
-<span class="n">timepoint</span> <span class="o">=</span> <span class="n">performances_filtered</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cond</span><span class="p">,</span> <span class="s1">&#39;best_timepoint&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="n">cond</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;performances_filtered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;performances_filtered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">task</span> <span class="o">==</span> <span class="n">task</span><span class="p">)</span>
+<span class="n">timepoint</span> <span class="o">=</span> <span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;performances_filtered&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cond</span><span class="p">,</span> <span class="s1">&#39;best_timepoint&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
 
 <span class="n">_</span> <span class="o">=</span> <span class="n">mk_coarse_grained_plot</span><span class="p">(</span>
     <span class="n">df_all</span><span class="p">,</span>
@@ -727,7 +710,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/clf_28_0.png" src="_images/clf_28_0.png" />
+<img alt="_images/clf_26_0.png" src="_images/clf_26_0.png" />
 </div>
 </div>
 <ul class="simple">
