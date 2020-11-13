@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; A1 Tone Discrimination</title>
+    <title>Section 2 &#8212; A1 Tone Discrimination</title>
     
   <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -55,8 +55,10 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <link rel="index" title="Index" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Autoencoders" href="ae_crap.html" />
+    <link rel="prev" title="Multi-layer Perceptron analysis (MLP)" href="mlp.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -96,16 +98,23 @@
   </a>
  </li>
 </ul>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="sec1.html">
    Section 1
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="sec2.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Section 2
   </a>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ae_crap.html">
+     Autoencoders
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -145,6 +154,18 @@
             class="fas fa-download"></i></button>
 
     
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/sec2.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
 </div>
         <!-- Source interaction buttons -->
 
@@ -157,7 +178,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/hadivafaii/A1ToneDiscrimination/issues/new?title=Issue%20on%20page%20%2Fgenindex.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/hadivafaii/A1ToneDiscrimination/issues/new?title=Issue%20on%20page%20%2Fsec2.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -178,6 +199,27 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#content">
+   Content:
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simple-autoencoder-ae">
+     Simple AutoEncoder (AE)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -185,13 +227,39 @@
         
               <div>
                 
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="section-2">
+<h1>Section 2<a class="headerlink" href="#section-2" title="Permalink to this headline">¶</a></h1>
+<p>In this phase, we explore whether latent variable modeling approach is suitable for this dataset.  We also combine datasets together to identify global features of the system that is shared across subjects and experimental sessions.</p>
+<div class="section" id="content">
+<h2>Content:<a class="headerlink" href="#content" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="simple-autoencoder-ae">
+<h3>Simple AutoEncoder (AE)<a class="headerlink" href="#simple-autoencoder-ae" title="Permalink to this headline">¶</a></h3>
+<p>This is the most simple AE I can build.  There is nothing fancy in the architecture and it does not respect temporal dependence in data.  This i.i.d assumption at every time point is completely wrong and this approach will have limited success, if at all.  However, it is still interesting to see what we can learn from these experiments.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -201,6 +269,8 @@
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="mlp.html" title="previous page">Multi-layer Perceptron analysis (MLP)</a>
+    <a class='right-next' id="next-link" href="ae_crap.html" title="next page">Autoencoders</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

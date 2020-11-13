@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; A1 Tone Discrimination</title>
+    <title>Section 1 &#8212; A1 Tone Discrimination</title>
     
   <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -55,8 +55,10 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <link rel="index" title="Index" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Processing" href="processing.html" />
+    <link rel="prev" title="Welcome" href="intro.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -96,11 +98,38 @@
   </a>
  </li>
 </ul>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="sec1.html">
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Section 1
   </a>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="processing.html">
+     Data Processing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="clf.html">
+     Classification Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="lda.html">
+     Linear Discriminant Analysis (LDA)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="clf-limited.html">
+     Classification Analysis (with limited time interval) + supervised PCA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mlp.html">
+     Multi-layer Perceptron analysis (MLP)
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="sec2.html">
@@ -145,6 +174,18 @@
             class="fas fa-download"></i></button>
 
     
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/sec1.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
 </div>
         <!-- Source interaction buttons -->
 
@@ -157,7 +198,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/hadivafaii/A1ToneDiscrimination/issues/new?title=Issue%20on%20page%20%2Fgenindex.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/hadivafaii/A1ToneDiscrimination/issues/new?title=Issue%20on%20page%20%2Fsec1.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -178,6 +219,32 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#content">
+   Content:
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classification-analysis">
+     Classification analysis
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-discriminant-analysis-lda">
+     Linear discriminant analysis (LDA):
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -185,13 +252,43 @@
         
               <div>
                 
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="section-1">
+<h1>Section 1<a class="headerlink" href="#section-1" title="Permalink to this headline">¶</a></h1>
+<p>This phase was about looking at individual experiments</p>
+<div class="section" id="content">
+<h2>Content:<a class="headerlink" href="#content" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classification-analysis">
+<h3>Classification analysis<a class="headerlink" href="#classification-analysis" title="Permalink to this headline">¶</a></h3>
+<p>We defined binary classification tasks and explored whether there is information in neural code during pure listening period that is predictive of behavior that will occur next.</p>
+</div>
+<div class="section" id="linear-discriminant-analysis-lda">
+<h3>Linear discriminant analysis (LDA):<a class="headerlink" href="#linear-discriminant-analysis-lda" title="Permalink to this headline">¶</a></h3>
+<p>We explore a lower dimensional projection of the data and observe that such structure exists in data.  Different trial types have different characteristics that can be captured in a lower dimensional space using LDA analysis.  This structrue exists for individual experiments separately but we do not know if this can be seen globally.  This will be the subject of next section</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -201,6 +298,8 @@
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">Welcome</a>
+    <a class='right-next' id="next-link" href="processing.html" title="next page">Data Processing</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

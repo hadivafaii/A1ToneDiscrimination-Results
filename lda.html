@@ -25,8 +25,8 @@
     href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -48,8 +48,6 @@
     <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -102,8 +100,8 @@
 </ul>
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active">
-  <a class="reference internal" href="content.html">
-   Content
+  <a class="reference internal" href="sec1.html">
+   Section 1
   </a>
   <ul class="current">
    <li class="toctree-l2">
@@ -132,6 +130,11 @@
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sec2.html">
+   Section 2
+  </a>
  </li>
 </ul>
 
@@ -381,7 +384,7 @@
                 
   <div class="section" id="linear-discriminant-analysis-lda">
 <h1>Linear Discriminant Analysis (LDA)<a class="headerlink" href="#linear-discriminant-analysis-lda" title="Permalink to this headline">¶</a></h1>
-<p>The main motivation behind LDA is to find a lower dimensional projection of data that maximizes <strong>between class</strong> distances, while minimizing <strong>within class</strong> distances of data points.  This dimensionality reduction will lead to a maximally separable projection of the data, and in a sense, one can consider this as supervised PCA.  The method is described in chapter 4 of the the famous <a class="reference external" href="https://web.stanford.edu/%7Ehastie/Papers/ESLII.pdf">ESL textbook</a>.</p>
+<p>The main motivation behind LDA is to find a lower dimensional projection of data that maximizes <strong>between class</strong> distances, while minimizing <strong>within class</strong> distances of data points.  This dimensionality reduction will lead to a maximally separable projection of the data, and in a sense, one can consider this as supervised PCA.  The method is described in chapter 4 of the the famous <a class="reference external" href="https://web.stanford.edu/~hastie/Papers/ESLII.pdf">ESL textbook</a>.</p>
 <p>For each experiment, the goal is to find a low-dimensional (<span class="math notranslate nohighlight">\(d=3\)</span>) space that maximally separates either {<strong>hit, miss, correctreject,</strong> and <strong>falsealarm</strong>} trials, or {<strong>target7k, target14k, nontarget14k,</strong> and <strong>nontarget20k</strong>} trials. This way, we can visualize trajectories to see check whether they diverge as time goes on. Furthermore, the resulting projection of features down to this smaller space can be used to learn a linear classifier.  Results show that we can indeed learn a low-<span class="math notranslate nohighlight">\(d\)</span> space where trial trajectories diverge, while maintaining a high classification score as well.  Results obtained using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.discriminant_analysis.LinearDiscriminantAnalysis.html">sklearn’s implementation of LDA</a>.</p>
 <div class="section" id="imports">
 <h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
@@ -389,9 +392,6 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;/home/hadivafa/Dropbox/git/A1ToneDiscrimination/&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">utils.plot_functions</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">analysis.lda_analysis</span> <span class="kn">import</span> <span class="n">LDA</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -405,6 +405,11 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="n">github_path</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;Dropbox/git/A1ToneDiscrimination/&#39;</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">github_path</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">utils.plot_functions</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">analysis.lda_analysis</span> <span class="kn">import</span> <span class="n">LDA</span>
 </pre></div>
 </div>
 </div>
@@ -414,7 +419,7 @@
 <h2>Dirs<a class="headerlink" href="#dirs" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;Documents/Kanold&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;Documents/A1&#39;</span><span class="p">)</span>
 <span class="n">processed_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;python_processed&#39;</span><span class="p">)</span>
 <span class="n">results_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;results&#39;</span><span class="p">,</span> <span class="s1">&#39;lda&#39;</span><span class="p">)</span>
 
@@ -440,7 +445,37 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lda_7_0.png" src="_images/lda_7_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mi">98</span><span class="n">a16cf9c79e</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">load_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">results_dir</span><span class="p">,</span> <span class="s1">&#39;4way&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">_</span> <span class="o">=</span> <span class="n">mk_lda_summary_plot</span><span class="p">(</span><span class="n">load_dir</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">70</span><span class="p">)</span>
+
+<span class="nn">~/Dropbox/git/A1ToneDiscrimination/utils/plot_functions.py</span> in <span class="ni">mk_lda_summary_plot</span><span class="nt">(load_dir, save_file, display, figsize, dpi)</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span>     <span class="n">summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span>     <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
+<span class="ne">---&gt; </span><span class="mi">27</span>         <span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">load_dir</span><span class="p">,</span> <span class="s1">&#39;results_</span><span class="si">{:d}</span><span class="s1">d.df&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dim</span><span class="p">)))</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span>         <span class="n">best_t</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">best_t_global</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span> 
+
+<span class="nn">/usr/local/lib/python3.8/dist-packages/pandas/io/pickle.py</span> in <span class="ni">read_pickle</span><span class="nt">(filepath_or_buffer, compression)</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fp_or_buf</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">compression</span> <span class="o">==</span> <span class="s2">&quot;infer&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span>         <span class="n">compression</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">--&gt; </span><span class="mi">169</span>     <span class="n">f</span><span class="p">,</span> <span class="n">fh</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span><span class="n">fp_or_buf</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="n">compression</span><span class="p">,</span> <span class="n">is_text</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span> 
+<span class="g g-Whitespace">    </span><span class="mi">171</span>     <span class="c1"># 1) try standard library Pickle</span>
+
+<span class="nn">/usr/local/lib/python3.8/dist-packages/pandas/io/common.py</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors)</span>
+<span class="g g-Whitespace">    </span><span class="mi">497</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">498</span>             <span class="c1"># Binary mode</span>
+<span class="ne">--&gt; </span><span class="mi">499</span>             <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_or_buf</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">500</span>         <span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">501</span> 
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/home/hadi/Documents/A1/results/lda/4way/results_1d.df&#39;
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -477,9 +512,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_10_0.png" src="_images/lda_10_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="d-shuffled">
@@ -500,9 +532,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_12_0.png" src="_images/lda_12_0.png" />
-</div>
 </div>
 </div>
 </div>
@@ -517,9 +546,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_14_0.png" src="_images/lda_14_0.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -528,9 +554,6 @@
     <span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">embed</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_15_0.png" src="_images/lda_15_0.png" />
 </div>
 </div>
 </div>
@@ -551,9 +574,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_18_0.png" src="_images/lda_18_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="id2">
@@ -571,9 +591,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_20_0.png" src="_images/lda_20_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="id3">
@@ -590,9 +607,6 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_22_0.png" src="_images/lda_22_0.png" />
 </div>
 </div>
 </div>
@@ -613,9 +627,6 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_24_0.png" src="_images/lda_24_0.png" />
 </div>
 </div>
 </div>
@@ -639,9 +650,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_28_0.png" src="_images/lda_28_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="id5">
@@ -660,9 +668,6 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_31_0.png" src="_images/lda_31_0.png" />
 </div>
 </div>
 </div>
@@ -684,9 +689,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_33_0.png" src="_images/lda_33_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="id8">
@@ -703,9 +705,6 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_35_0.png" src="_images/lda_35_0.png" />
 </div>
 </div>
 </div>
@@ -727,9 +726,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_37_0.png" src="_images/lda_37_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="id10">
@@ -746,9 +742,6 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_39_0.png" src="_images/lda_39_0.png" />
 </div>
 </div>
 </div>
@@ -769,9 +762,6 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_41_0.png" src="_images/lda_41_0.png" />
 </div>
 </div>
 </div>
