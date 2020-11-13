@@ -28,19 +28,14 @@ Traceback (most recent call last):
     await self._async_handle_timeout(timeout, cell)
   File "/usr/local/lib/python3.8/dist-packages/nbclient/client.py", line 683, in _async_handle_timeout
     raise CellTimeoutError.error_from_timeout_and_cell(
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 60 seconds.
+nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 300 seconds.
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-from utils.generic_utils import reset_df
-
-load_dir = pjoin(processed_dir, "processed_nb_std={:d}".format(nb_std))
-df_all = []
-for file_name in tqdm(os.listdir(load_dir)):
-    with open(pjoin(load_dir, file_name)) as f:
-        df = pd.read_pickle(f.name)
-        df_all.append(df)
-df_all = pd.concat(df_all)
-df_all = reset_df(df_all)
+_ = mk_data_summary_plot(
+    df=df_all,
+    figsize=(18, 17),
+    dpi=65,
+)
 -------------------
 
