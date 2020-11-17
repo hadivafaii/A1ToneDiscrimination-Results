@@ -25,8 +25,8 @@
     href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -240,29 +240,27 @@
      decoder network
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-sketch">
+     Model sketch
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-sketch">
-   Model sketch
+  <a class="reference internal nav-link" href="#performance">
+   Performance
   </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#performance">
-     Performance
-    </a>
-   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#inspecting-the-model">
      Inspecting the model
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#a-big-flaw">
-       A big flaw:
-      </a>
-     </li>
-    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-big-flaw">
+     A big flaw:
+    </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#plotting-the-latents">
@@ -310,9 +308,8 @@
 <h3>decoder network<a class="headerlink" href="#decoder-network" title="Permalink to this headline">¶</a></h3>
 <p>Just like encoder, this is also a 1-layer network followed by a nonlinearity.  Its output is fed into the transpose of the embedding layer, which aims to reconstruct the inputs.  The decoder also does not take into account time for now.</p>
 </div>
-</div>
 <div class="section" id="model-sketch">
-<h2>Model sketch<a class="headerlink" href="#model-sketch" title="Permalink to this headline">¶</a></h2>
+<h3>Model sketch<a class="headerlink" href="#model-sketch" title="Permalink to this headline">¶</a></h3>
 <p>Here is a high level illustration.  The key for a succesfull model will be a clever encoder and decoder design that respects the data structure and also temporal dynamics, both local and global scales. Decoding behavior labels and stim labels form latents will make them learn signals that are correlated to both, either one, or none of these labels (I will provide more details on this when I implemented it).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -332,8 +329,10 @@
 ></iframe>
 </div></div>
 </div>
+</div>
+</div>
 <div class="section" id="performance">
-<h3>Performance<a class="headerlink" href="#performance" title="Permalink to this headline">¶</a></h3>
+<h2>Performance<a class="headerlink" href="#performance" title="Permalink to this headline">¶</a></h2>
 <p>Here I will load a sample autoencoder and plot how the latents look like.  This model has</p>
 <ul class="simple">
 <li><p>hidden shared dim = 64 (i.e. for embedding layer), and</p></li>
@@ -360,7 +359,7 @@
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">)</span>
 
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CUDA_VISIBLE_DEVICES&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;1&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;CUDA_VISIBLE_DEVICES&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;0&quot;</span>
 <span class="n">github_path</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;Dropbox/git/A1ToneDiscrimination/&#39;</span><span class="p">)</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">github_path</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">utils.plot_functions</span> <span class="kn">import</span> <span class="o">*</span>
@@ -373,8 +372,22 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="s1">&#39;tae_h:64_z:16_drp:0.2_wd:0.01_lr:0.001_gamma:0.99&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="s1">&#39;tae_h:64_z:32_drp:0.1_wd:0.001_lr:0.001_gamma:0.97_norm:var_no_in_relu&#39;</span>
 <span class="n">mod</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="n">keyword</span><span class="o">=</span><span class="n">cm</span><span class="p">,</span> <span class="n">chkpt_id</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mod</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">base_dir</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/home/hadi/Documents/A1&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">base_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;Documents/A1&#39;</span><span class="p">)</span>
+<span class="n">mod</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">h_file</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;Documents/A1/python_processed/organized_nb_std=1.h5&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -390,11 +403,13 @@
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>warning ken_2016-09-23
-warning rodger_2017-08-22
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>warning scabbers_2016-08-24
-warning scabbers_2016-09-07
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>warning rodger_2017-08-22
+warning scabbers_2016-08-24
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>warning scabbers_2016-09-07
 </pre></div>
 </div>
 </div>
@@ -406,8 +421,8 @@ warning scabbers_2016-09-07
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;model_name&#39;: &#39;tae_h:64_z:16_drp:0.2_wd:0.01_lr:0.001_gamma:0.99_8374897185934529168&#39;,
- &#39;chkpt&#39;: 300}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;model_name&#39;: &#39;tae_h:64_z:32_drp:0.1_wd:0.001_lr:0.001_gamma:0.97_norm:var_no_in_relu_-4164885386438988877&#39;,
+ &#39;chkpt&#39;: 400}
 </pre></div>
 </div>
 </div>
@@ -419,13 +434,12 @@ warning scabbers_2016-09-07
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>valid loss: 7098.274,   valid r2 score:  21.36 %
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>valid loss: 41.752,   valid r2 score:  21.95 %
 </pre></div>
 </div>
 </div>
 </div>
 <p>We can explain only ~20% of variance</p>
-</div>
 <div class="section" id="inspecting-the-model">
 <h3>Inspecting the model<a class="headerlink" href="#inspecting-the-model" title="Permalink to this headline">¶</a></h3>
 <p>Let us compare model predicted traces with the true data for the best and worst cells</p>
@@ -461,11 +475,12 @@ warning scabbers_2016-09-07
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ae_crap_13_0.png" src="_images/ae_crap_13_0.png" />
+<img alt="_images/ae_crap_14_0.png" src="_images/ae_crap_14_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="a-big-flaw">
-<h4>A big flaw:<a class="headerlink" href="#a-big-flaw" title="Permalink to this headline">¶</a></h4>
+<h3>A big flaw:<a class="headerlink" href="#a-big-flaw" title="Permalink to this headline">¶</a></h3>
 <p>The model predicts some cells perfectly, but other cells no better than chance.  I think I know why: if we look at the variance of the cell itself, we see that the one with almost perfect prediction has a large variance.  Why is this happening?  My guess is because this model is designed poorly and not properly constrained, it is choosing some high variance neurons and assigns some of the latent dimensions to just memorize that neuron.  This way, the model can achieve a lower mean-squared error.  I don’t blame the model for showing this behavior.  Given the current setup, it is really constly to wrongly predict a high variacne neuron, but missing some low variance cells isn’t as bad.</p>
 <p>Possible solutions:</p>
 <ul class="simple">
@@ -489,22 +504,21 @@ warning scabbers_2016-09-07
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>best predicted neuron:
-r2 = 99.4 %
-trace var: 4504.06
+r2 = 96.1 %
+trace var: 999.94
 
 worst predicted neuron:
 r2 = 0.0 %
-trace var: 8.24
+trace var: 24.34
 </pre></div>
 </div>
 </div>
 </div>
 <p>This is really bad. A proper autoencoder should not learn to memorize the input data, but rather, detect patterns.</p>
 </div>
-</div>
 <div class="section" id="plotting-the-latents">
 <h3>Plotting the latents<a class="headerlink" href="#plotting-the-latents" title="Permalink to this headline">¶</a></h3>
-<p>let’s just plot 5 and see how they look like</p>
+<p>let’s just plot 5 of them and see how they look like (each corresponds to a single trial)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
@@ -516,11 +530,11 @@ trace var: 8.24
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ae_crap_21_0.png" src="_images/ae_crap_21_0.png" />
-<img alt="_images/ae_crap_21_1.png" src="_images/ae_crap_21_1.png" />
-<img alt="_images/ae_crap_21_2.png" src="_images/ae_crap_21_2.png" />
-<img alt="_images/ae_crap_21_3.png" src="_images/ae_crap_21_3.png" />
-<img alt="_images/ae_crap_21_4.png" src="_images/ae_crap_21_4.png" />
+<img alt="_images/ae_crap_22_0.png" src="_images/ae_crap_22_0.png" />
+<img alt="_images/ae_crap_22_1.png" src="_images/ae_crap_22_1.png" />
+<img alt="_images/ae_crap_22_2.png" src="_images/ae_crap_22_2.png" />
+<img alt="_images/ae_crap_22_3.png" src="_images/ae_crap_22_3.png" />
+<img alt="_images/ae_crap_22_4.png" src="_images/ae_crap_22_4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -531,7 +545,7 @@ trace var: 8.24
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(763, 135, 16)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(763, 135, 32)
 </pre></div>
 </div>
 </div>
@@ -579,7 +593,16 @@ trace var: 8.24
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>...merging dicts: 0it [00:00, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>...merging dicts: 43652it [00:00, 436503.76it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>...merging dicts: 22268it [00:00, 222675.43it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>...merging dicts: 44752it [00:00, 223315.24it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>...merging dicts: 66444it [00:00, 221354.26it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>...merging dicts: 81088it [00:00, 191895.65it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                
@@ -588,7 +611,7 @@ trace var: 8.24
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1648080, 4)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3296160, 4)
 </pre></div>
 </div>
 </div>
@@ -604,10 +627,10 @@ trace var: 8.24
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7f0ec6112c10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7f14095f4eb8&gt;
 </pre></div>
 </div>
-<img alt="_images/ae_crap_29_1.png" src="_images/ae_crap_29_1.png" />
+<img alt="_images/ae_crap_30_1.png" src="_images/ae_crap_30_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -617,10 +640,10 @@ trace var: 8.24
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7f0ec05b0250&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7f13c5910b00&gt;
 </pre></div>
 </div>
-<img alt="_images/ae_crap_30_1.png" src="_images/ae_crap_30_1.png" />
+<img alt="_images/ae_crap_31_1.png" src="_images/ae_crap_31_1.png" />
 </div>
 </div>
 </div>
