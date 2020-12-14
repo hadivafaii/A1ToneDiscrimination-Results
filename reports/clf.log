@@ -17,35 +17,30 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import os
-import sys
-import numpy as np
-import pandas as pd
-from datetime import datetime
-from os.path import join as pjoin
-from copy import deepcopy as dc
-from tqdm.notebook import tqdm
-import pickle
-import h5py
+base_dir = pjoin(os.environ['HOME'], 'Documents/A1')
+processed_dir = pjoin(base_dir, 'python_processed')
 
-import matplotlib.pyplot as plt
-import seaborn as sns
-sns.set_style('white')
+nb_std = 1
+h_load_file = pjoin(processed_dir, "organized_nb_std={:d}.h5".format(nb_std))
 
-github_path = pjoin(os.environ['HOME'], 'Dropbox/git/A1ToneDiscrimination/')
-sys.path.insert(0, github_path)
-from utils.plot_functions import *
-from utils.generic_utils import load_dfs, get_tasks, merge_dicts
+run_dir = pjoin(base_dir, 'results/svm/v1_l1_full')
+df_all = load_dfs(run_dir)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m<ipython-input-1-2393b63ab474>[0m in [0;36m<module>[0;34m[0m
-[1;32m     16[0m [0mgithub_path[0m [0;34m=[0m [0mpjoin[0m[0;34m([0m[0mos[0m[0;34m.[0m[0menviron[0m[0;34m[[0m[0;34m'HOME'[0m[0;34m][0m[0;34m,[0m [0;34m'Dropbox/git/A1ToneDiscrimination/'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     17[0m [0msys[0m[0;34m.[0m[0mpath[0m[0;34m.[0m[0minsert[0m[0;34m([0m[0;36m0[0m[0;34m,[0m [0mgithub_path[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 18[0;31m [0;32mfrom[0m [0mutils[0m[0;34m.[0m[0mplot_functions[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     19[0m [0;32mfrom[0m [0mutils[0m[0;34m.[0m[0mgeneric_utils[0m [0;32mimport[0m [0mload_dfs[0m[0;34m,[0m [0mget_tasks[0m[0;34m,[0m [0mmerge_dicts[0m[0;34m[0m[0;34m[0m[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m<ipython-input-2-d23d7a41e69f>[0m in [0;36m<module>[0;34m[0m
+[1;32m      6[0m [0;34m[0m[0m
+[1;32m      7[0m [0mrun_dir[0m [0;34m=[0m [0mpjoin[0m[0;34m([0m[0mbase_dir[0m[0;34m,[0m [0;34m'results/svm/v1_l1_full'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 8[0;31m [0mdf_all[0m [0;34m=[0m [0mload_dfs[0m[0;34m([0m[0mrun_dir[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m~/Dropbox/git/A1ToneDiscrimination/utils/generic_utils.py[0m in [0;36mload_dfs[0;34m(load_dir)[0m
+[1;32m     20[0m         [0;32mreturn[0m [0mnext[0m[0;34m([0m[0mfilter[0m[0;34m([0m[0mre[0m[0;34m.[0m[0mcompile[0m[0;34m([0m[0mpattern[0m[0;34m)[0m[0;34m.[0m[0mmatch[0m[0;34m,[0m [0mfile_list[0m[0;34m)[0m[0;34m,[0m [0;32mNone[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     21[0m [0;34m[0m[0m
+[0;32m---> 22[0;31m     [0mflist[0m [0;34m=[0m [0mos[0m[0;34m.[0m[0mlistdir[0m[0;34m([0m[0mload_dir[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     23[0m     [0mcoeffs[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_pickle[0m[0;34m([0m[0mpjoin[0m[0;34m([0m[0mload_dir[0m[0;34m,[0m [0m_get_file[0m[0;34m([0m[0mflist[0m[0;34m,[0m [0;34mr'coeffs_\['[0m[0;34m)[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     24[0m     [0mperformances[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_pickle[0m[0;34m([0m[0mpjoin[0m[0;34m([0m[0mload_dir[0m[0;34m,[0m [0m_get_file[0m[0;34m([0m[0mflist[0m[0;34m,[0m [0;34mr'performances_\['[0m[0;34m)[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'utils'
-ModuleNotFoundError: No module named 'utils'
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '/root/Documents/A1/results/svm/v1_l1_full'
+FileNotFoundError: [Errno 2] No such file or directory: '/root/Documents/A1/results/svm/v1_l1_full'
 

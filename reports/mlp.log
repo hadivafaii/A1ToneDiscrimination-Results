@@ -17,35 +17,20 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import os
-import sys
-import numpy as np
-import pandas as pd
-from datetime import datetime
-from os.path import join as pjoin
-from copy import deepcopy as dc
-from tqdm.notebook import tqdm
-import pickle
-import h5py
+mlp_dir = pjoin(os.environ['HOME'], 'Documents/A1/results/mlp')
+hidden_sizes = sorted([int(x) for x in os.listdir(mlp_dir)])
 
-import matplotlib.pyplot as plt
-import seaborn as sns
-sns.set_style('white')
-
-github_path = pjoin(os.environ['HOME'], 'Dropbox/git/A1ToneDiscrimination/')
-sys.path.insert(0, github_path)
-from analysis.lda_analysis import LDA
-from utils.plot_functions import *
+hidden_sizes
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m<ipython-input-1-ef723f1879a0>[0m in [0;36m<module>[0;34m[0m
-[1;32m     16[0m [0mgithub_path[0m [0;34m=[0m [0mpjoin[0m[0;34m([0m[0mos[0m[0;34m.[0m[0menviron[0m[0;34m[[0m[0;34m'HOME'[0m[0;34m][0m[0;34m,[0m [0;34m'Dropbox/git/A1ToneDiscrimination/'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     17[0m [0msys[0m[0;34m.[0m[0mpath[0m[0;34m.[0m[0minsert[0m[0;34m([0m[0;36m0[0m[0;34m,[0m [0mgithub_path[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 18[0;31m [0;32mfrom[0m [0manalysis[0m[0;34m.[0m[0mlda_analysis[0m [0;32mimport[0m [0mLDA[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     19[0m [0;32mfrom[0m [0mutils[0m[0;34m.[0m[0mplot_functions[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m<ipython-input-2-15526157d83b>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mmlp_dir[0m [0;34m=[0m [0mpjoin[0m[0;34m([0m[0mos[0m[0;34m.[0m[0menviron[0m[0;34m[[0m[0;34m'HOME'[0m[0;34m][0m[0;34m,[0m [0;34m'Documents/A1/results/mlp'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mhidden_sizes[0m [0;34m=[0m [0msorted[0m[0;34m([0m[0;34m[[0m[0mint[0m[0;34m([0m[0mx[0m[0;34m)[0m [0;32mfor[0m [0mx[0m [0;32min[0m [0mos[0m[0;34m.[0m[0mlistdir[0m[0;34m([0m[0mmlp_dir[0m[0;34m)[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0;34m[0m[0m
+[1;32m      4[0m [0mhidden_sizes[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'analysis'
-ModuleNotFoundError: No module named 'analysis'
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '/root/Documents/A1/results/mlp'
+FileNotFoundError: [Errno 2] No such file or directory: '/root/Documents/A1/results/mlp'
 

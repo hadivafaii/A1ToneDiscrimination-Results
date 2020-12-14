@@ -17,36 +17,39 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import os
-import sys
+load_dir = pjoin(results_dir, '4way')
 
-import numpy as np
-import pandas as pd
-from datetime import datetime
-from os.path import join as pjoin
-from copy import deepcopy as dc
-from tqdm.notebook import tqdm
-import pickle
-import h5py
-
-import matplotlib.pyplot as plt
-import seaborn as sns
-sns.set_style('white')
-
-github_path = pjoin(os.environ['HOME'], 'Dropbox/git/A1ToneDiscrimination/')
-sys.path.insert(0, github_path)
-from utils.plot_functions import *
-from analysis.lda_analysis import LDA
+_ = mk_lda_summary_plot(load_dir, dpi=70)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m<ipython-input-1-8477ba26d606>[0m in [0;36m<module>[0;34m[0m
-[1;32m     17[0m [0mgithub_path[0m [0;34m=[0m [0mpjoin[0m[0;34m([0m[0mos[0m[0;34m.[0m[0menviron[0m[0;34m[[0m[0;34m'HOME'[0m[0;34m][0m[0;34m,[0m [0;34m'Dropbox/git/A1ToneDiscrimination/'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     18[0m [0msys[0m[0;34m.[0m[0mpath[0m[0;34m.[0m[0minsert[0m[0;34m([0m[0;36m0[0m[0;34m,[0m [0mgithub_path[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 19[0;31m [0;32mfrom[0m [0mutils[0m[0;34m.[0m[0mplot_functions[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     20[0m [0;32mfrom[0m [0manalysis[0m[0;34m.[0m[0mlda_analysis[0m [0;32mimport[0m [0mLDA[0m[0;34m[0m[0;34m[0m[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m<ipython-input-3-98a16cf9c79e>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mload_dir[0m [0;34m=[0m [0mpjoin[0m[0;34m([0m[0mresults_dir[0m[0;34m,[0m [0;34m'4way'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0;34m[0m[0m
+[0;32m----> 3[0;31m [0m_[0m [0;34m=[0m [0mmk_lda_summary_plot[0m[0;34m([0m[0mload_dir[0m[0;34m,[0m [0mdpi[0m[0;34m=[0m[0;36m70[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m~/Dropbox/git/A1ToneDiscrimination/utils/plot_functions.py[0m in [0;36mmk_lda_summary_plot[0;34m(load_dir, save_file, display, figsize, dpi)[0m
+[1;32m     25[0m     [0msummary[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mDataFrame[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     26[0m     [0;32mfor[0m [0mdim[0m [0;32min[0m [0;34m[[0m[0;36m1[0m[0;34m,[0m [0;36m2[0m[0;34m,[0m [0;36m3[0m[0;34m][0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 27[0;31m         [0mresults[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_pickle[0m[0;34m([0m[0mpjoin[0m[0;34m([0m[0mload_dir[0m[0;34m,[0m [0;34m'results_{:d}d.df'[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mdim[0m[0;34m)[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     28[0m         [0mbest_t[0m [0;34m=[0m [0mresults[0m[0;34m.[0m[0mbest_t_global[0m[0;34m.[0m[0munique[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mitem[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     29[0m [0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'utils'
-ModuleNotFoundError: No module named 'utils'
+[0;32m/usr/local/lib/python3.8/dist-packages/pandas/io/pickle.py[0m in [0;36mread_pickle[0;34m(filepath_or_buffer, compression)[0m
+[1;32m    167[0m     [0;32mif[0m [0;32mnot[0m [0misinstance[0m[0;34m([0m[0mfp_or_buf[0m[0;34m,[0m [0mstr[0m[0;34m)[0m [0;32mand[0m [0mcompression[0m [0;34m==[0m [0;34m"infer"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    168[0m         [0mcompression[0m [0;34m=[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 169[0;31m     [0mf[0m[0;34m,[0m [0mfh[0m [0;34m=[0m [0mget_handle[0m[0;34m([0m[0mfp_or_buf[0m[0;34m,[0m [0;34m"rb"[0m[0;34m,[0m [0mcompression[0m[0;34m=[0m[0mcompression[0m[0;34m,[0m [0mis_text[0m[0;34m=[0m[0;32mFalse[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    170[0m [0;34m[0m[0m
+[1;32m    171[0m     [0;31m# 1) try standard library Pickle[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.8/dist-packages/pandas/io/common.py[0m in [0;36mget_handle[0;34m(path_or_buf, mode, encoding, compression, memory_map, is_text, errors)[0m
+[1;32m    497[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    498[0m             [0;31m# Binary mode[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 499[0;31m             [0mf[0m [0;34m=[0m [0mopen[0m[0;34m([0m[0mpath_or_buf[0m[0;34m,[0m [0mmode[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    500[0m         [0mhandles[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0mf[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    501[0m [0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '/root/Documents/A1/results/lda/4way/results_1d.df'
+FileNotFoundError: [Errno 2] No such file or directory: '/root/Documents/A1/results/lda/4way/results_1d.df'
 
