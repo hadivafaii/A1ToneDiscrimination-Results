@@ -25,8 +25,8 @@
     href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -48,8 +48,6 @@
     <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -244,23 +242,6 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#imports">
-   Imports
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-dir">
-     Data dir
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#organize-data">
-   Organize data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#print-data-summary">
    Print data summary
   </a>
@@ -283,23 +264,114 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#figure-description">
-     Figure description
+    <a class="reference internal nav-link" href="#average-responses-for-different-behavior-frequencies">
+     Average responses for different behavior frequencies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#average-responses-for-different-passive-frequencies">
+     Average responses for different passive frequencies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#counting-the-number-of-sup-and-exc-cells">
+     Counting the number of SUP and EXC cells
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#average-response-for-different-trials">
+     Average response for different trials
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#single-cells-vs-population">
+   Single cells vs Population
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#frequency">
+     Frequency
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trial-labels">
+     Trial labels
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#from-these-analysis-we-conclude-that-we-need-population-level-analysis-duh">
+     From these analysis we conclude that we need population level analysis (duh)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nearest-neighbor-analysis">
+   Nearest Neighbor analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Trial labels
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#using-one-experiment-avg-across-cells-just-for-this-experiment">
-       Using one experiment (avg across cells just for this experiment)
+      <a class="reference internal nav-link" href="#connectivity-matrix">
+       Connectivity matrix
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#observartions">
-       Observartions:
+      <a class="reference internal nav-link" href="#plot-top-30-neighbors">
+       Plot top 30 neighbors
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#global-avg">
-       Global avg
+      <a class="reference internal nav-link" href="#find-label-for-top-30-neighbors">
+       Find label for top 30 neighbors
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#do-neighbors-have-more-or-less-the-same-label">
+       Do neighbors have more or less the same label?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conclusion-there-is-not-much-of-shared-structure-in-single-cell-traces-as-a-function-of-trial-label">
+       Conclusion: there is not much of shared structure in single cell traces as a function of trial label
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stim-frequencies">
+     Stim frequencies
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Connectivity matrix
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Plot top 30 neighbors
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Find label for top 30 neighbors
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       Do neighbors have more or less the same label?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conclusion-similarly-there-is-not-much-of-shared-structure-in-single-cell-traces-as-a-function-of-stim-frequency">
+       Conclusion: similarly, there is not much of shared structure in single cell traces as a function of stim frequency
       </a>
      </li>
     </ul>
@@ -307,8 +379,50 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simply-looking-at-averages-might-be-misleading">
-   Simply looking at averages might be misleading
+  <a class="reference internal nav-link" href="#simply-looking-at-averages-is-misleading">
+   Simply looking at averages is misleading
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-1-a-cell-that-is-highly-active-during-hit-and-falsealarm-trials">
+     Example 1: a cell that is highly active during hit and falsealarm trials
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-2-a-cell-that-is-highly-active-during-hit-but-not-consistently">
+     Example 2: a cell that is highly active during hit, but not consistently.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-3-excited-during-hit-and-falsealaram-inhibited-during-miss-and-correctreject">
+     Example 3: excited during hit and falsealaram, inhibited during miss and correctreject
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-4-seems-random">
+     Example 4: seems random
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-5-highly-active-during-correctreject-and-to-some-extent-during-hit">
+     Example 5: highly active during correctreject, and to some extent during hit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-6-can-be-used-to-classify-hit-vs-antything-else">
+     Example 6: can be used to classify hit vs antything else
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-7-another-random-cell">
+     Example 7: another random cell
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discussion">
+   Discussion
   </a>
  </li>
 </ul>
@@ -324,8 +438,6 @@
                 
   <div class="section" id="data-processing">
 <h1>Data Processing<a class="headerlink" href="#data-processing" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="imports">
-<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -349,9 +461,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">ced8e06a2f34</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">github_path</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;Dropbox/git/A1ToneDiscrimination/&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">github_path</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">17</span> <span class="kn">from</span> <span class="nn">utils.process</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="kn">from</span> <span class="nn">utils.plot_functions</span> <span class="kn">import</span> <span class="n">mk_pie_plot</span><span class="p">,</span> <span class="n">mk_data_summary_plot</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;utils&#39;
+</pre></div>
 </div>
-<div class="section" id="data-dir">
-<h3>Data dir<a class="headerlink" href="#data-dir" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;Documents/A1&#39;</span><span class="p">)</span>
@@ -361,10 +484,6 @@
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="organize-data">
-<h2>Organize data<a class="headerlink" href="#organize-data" title="Permalink to this headline">¶</a></h2>
 <p>Get raw data and organize it in python h5 files.  Data processing:</p>
 <ul class="simple">
 <li><p>First step was to remove traces that contained NaN.  This sometimes meant removing entire trials that had NaN for all neurons in the experiment, and sometime meant removing neurons that had NaN in all their trials.</p></li>
@@ -380,7 +499,6 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[INFO] file found. exiting...
 </pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -405,8 +523,6 @@
 - num passive trials 1839,    
 
 - num/percent different trials:
-	○ target: 1983 (50%)
-	○ nontarget: 1970 (50%)
 	○ correctreject: 1411 (36%)
 	○ hit: 1180 (30%)
 	○ earlyhit: 411 (10%)
@@ -468,7 +584,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/processing_10_0.png" src="_images/processing_10_0.png" />
+<img alt="_images/processing_8_0.png" src="_images/processing_8_0.png" />
 </div>
 </div>
 </div>
@@ -517,7 +633,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/processing_12_0.png" src="_images/processing_12_0.png" />
+<img alt="_images/processing_10_0.png" src="_images/processing_10_0.png" />
 </div>
 </div>
 </div>
@@ -527,135 +643,106 @@
 <p>load the data</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">utils.generic_utils</span> <span class="kn">import</span> <span class="n">reset_df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">load_df_file</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">processed_dir</span><span class="p">,</span> <span class="s1">&#39;processed_nb_std=</span><span class="si">{:d}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nb_std</span><span class="p">),</span> <span class="s2">&quot;all.df&quot;</span><span class="p">)</span>
+<span class="n">df_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">load_df_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="average-responses-for-different-behavior-frequencies">
+<h3>Average responses for different behavior frequencies<a class="headerlink" href="#average-responses-for-different-behavior-frequencies" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>target: 7, 10 kHz</p></li>
+<li><p>nontarget: 14, 20, kHz</p></li>
+</ul>
+<p>Avg across all experiments. Passive trials also included.  Interestingly, at f = 14kHz avg traces for passive and falsealarm trials overlap almost perfectly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">behavior_freqs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">df_all</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_all</span><span class="o">.</span><span class="n">trial</span> <span class="o">!=</span> <span class="s1">&#39;passive&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">stimfreq</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
 
-<span class="n">load_dir</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">processed_dir</span><span class="p">,</span> <span class="s2">&quot;processed_nb_std=</span><span class="si">{:d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nb_std</span><span class="p">))</span>
-<span class="n">df_all</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">load_dir</span><span class="p">)):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">pjoin</span><span class="p">(</span><span class="n">load_dir</span><span class="p">,</span> <span class="n">file_name</span><span class="p">))</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="n">df_all</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="n">df_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df_all</span><span class="p">)</span>
-<span class="n">df_all</span> <span class="o">=</span> <span class="n">reset_df</span><span class="p">(</span><span class="n">df_all</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;whitegrid&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax_arr</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">behavior_freqs</span><span class="p">):</span>
+    <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">idx</span> <span class="o">%</span> <span class="mi">2</span>
+    
+    <span class="k">if</span> <span class="n">freq</span> <span class="o">==</span> <span class="mi">7000</span><span class="p">:</span>
+        <span class="n">freq_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">freq</span><span class="p">,</span> <span class="mi">7071</span><span class="p">]</span>
+        <span class="n">trials_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hit&#39;</span><span class="p">,</span> <span class="s1">&#39;miss&#39;</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">freq</span> <span class="o">==</span> <span class="mi">9899</span><span class="p">:</span>
+        <span class="n">freq_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">freq</span><span class="p">,</span> <span class="mi">10000</span><span class="p">]</span>
+        <span class="n">trials_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hit&#39;</span><span class="p">,</span> <span class="s1">&#39;miss&#39;</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">freq</span> <span class="o">==</span> <span class="mi">14000</span><span class="p">:</span>
+        <span class="n">freq_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">freq</span><span class="p">,</span> <span class="mi">14142</span><span class="p">]</span>
+        <span class="n">trials_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;correctreject&#39;</span><span class="p">,</span> <span class="s1">&#39;falsealarm&#39;</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">freq</span> <span class="o">==</span> <span class="mi">19799</span><span class="p">:</span>
+        <span class="n">freq_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">freq</span><span class="p">,</span> <span class="mi">20000</span><span class="p">]</span>
+        <span class="n">trials_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;correctreject&#39;</span><span class="p">,</span> <span class="s1">&#39;falsealarm&#39;</span><span class="p">]</span>
+    <span class="n">trials_list</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;passive&#39;</span><span class="p">])</span>
+    
+    <span class="n">selected_df</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df_all</span><span class="o">.</span><span class="n">stimfreq</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">freq_list</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_all</span><span class="o">.</span><span class="n">trial</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">trials_list</span><span class="p">))]</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">selected_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;timepoint&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;dff&#39;</span><span class="p">,</span>
+                 <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;trial&#39;</span><span class="p">,</span> <span class="n">hue_order</span><span class="o">=</span><span class="n">trials_list</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax_arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span>
+    <span class="n">ax_arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax_arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/34 [00:00&lt;?, ?it/s]
-</pre></div>
+<img alt="_images/processing_14_0.png" src="_images/processing_14_0.png" />
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  3%|▎         | 1/34 [00:05&lt;02:59,  5.45s/it]
-</pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  6%|▌         | 2/34 [00:13&lt;03:22,  6.34s/it]
-</pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  9%|▉         | 3/34 [00:24&lt;03:53,  7.52s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 12%|█▏        | 4/34 [00:32&lt;03:53,  7.77s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 15%|█▍        | 5/34 [00:55&lt;05:59, 12.39s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 18%|█▊        | 6/34 [00:59&lt;04:36,  9.87s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 21%|██        | 7/34 [01:19&lt;05:47, 12.86s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 24%|██▎       | 8/34 [01:41&lt;06:47, 15.69s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 26%|██▋       | 9/34 [01:47&lt;05:15, 12.63s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 29%|██▉       | 10/34 [01:58&lt;04:53, 12.22s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 32%|███▏      | 11/34 [02:13&lt;05:02, 13.17s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 35%|███▌      | 12/34 [02:28&lt;05:00, 13.65s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 38%|███▊      | 13/34 [02:40&lt;04:34, 13.08s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 41%|████      | 14/34 [02:52&lt;04:16, 12.83s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 44%|████▍     | 15/34 [02:56&lt;03:13, 10.19s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 47%|████▋     | 16/34 [03:14&lt;03:45, 12.53s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|█████     | 17/34 [03:30&lt;03:49, 13.49s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 53%|█████▎    | 18/34 [03:54&lt;04:25, 16.61s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 56%|█████▌    | 19/34 [04:01&lt;03:25, 13.73s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 59%|█████▉    | 20/34 [04:07&lt;02:38, 11.33s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 62%|██████▏   | 21/34 [04:31&lt;03:17, 15.19s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 65%|██████▍   | 22/34 [04:36&lt;02:27, 12.25s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 68%|██████▊   | 23/34 [04:51&lt;02:23, 13.06s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 71%|███████   | 24/34 [05:25&lt;03:13, 19.33s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 74%|███████▎  | 25/34 [05:44&lt;02:52, 19.14s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 76%|███████▋  | 26/34 [05:57&lt;02:18, 17.34s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 79%|███████▉  | 27/34 [06:09&lt;01:50, 15.74s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 82%|████████▏ | 28/34 [06:13&lt;01:13, 12.26s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 85%|████████▌ | 29/34 [06:18&lt;00:50, 10.03s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 88%|████████▊ | 30/34 [06:26&lt;00:38,  9.55s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 91%|█████████ | 31/34 [06:36&lt;00:29,  9.72s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 94%|█████████▍| 32/34 [06:39&lt;00:15,  7.54s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 97%|█████████▋| 33/34 [07:06&lt;00:13, 13.46s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 34/34 [07:09&lt;00:00, 10.40s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 34/34 [07:09&lt;00:00, 12.64s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="section" id="average-responses-for-different-passive-frequencies">
+<h3>Average responses for different passive frequencies<a class="headerlink" href="#average-responses-for-different-passive-frequencies" title="Permalink to this headline">¶</a></h3>
+<p>Avg over all passive trials. The bar plot shows a clear distinction between target (7, 10 kHz) and nontarget (14, 20 kHz) frequencies vs the rest.  As a result of intense training, the animals become much more selective to these frequencies.  The only anomaly here is at 5kHz.  What could cause this increase in response intensity?  This is not explainable by saying 5k is close to 7k, because then what about 5.6 k?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax_arr</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">selected_df</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_all</span><span class="o">.</span><span class="n">trial</span> <span class="o">==</span> <span class="s1">&#39;passive&#39;</span><span class="p">]</span>
+<span class="n">ax_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">selected_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;timepoint&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;dff&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;stimfreq&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">selected_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">selected_df</span><span class="o">.</span><span class="n">timepoint</span> <span class="o">==</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;max_act&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;stimfreq&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax_arr</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax_arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=-</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">ax_arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/processing_16_0.png" src="_images/processing_16_0.png" />
 </div>
-<div class="section" id="figure-description">
-<h3>Figure description<a class="headerlink" href="#figure-description" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="counting-the-number-of-sup-and-exc-cells">
+<h3>Counting the number of SUP and EXC cells<a class="headerlink" href="#counting-the-number-of-sup-and-exc-cells" title="Permalink to this headline">¶</a></h3>
+<p>To get more insights into this, here I plot the number of SUP and EXC cells during passive trials in each frequency.  Number of suppressed cells is noticably lower for behavior frequencies 7, 10, 14, and 20 kHz, plus 5 kHz.  I wonder if this is a recording artifact, or if there is a better explantion?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;whitegrid&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax_arr</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">selected_df</span><span class="o">.</span><span class="n">stimfreq</span><span class="o">.</span><span class="n">unique</span><span class="p">())):</span>
+    <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">//</span> <span class="mi">8</span><span class="p">,</span> <span class="n">idx</span> <span class="o">%</span> <span class="mi">8</span>
+    <span class="n">_df</span> <span class="o">=</span> <span class="n">selected_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">selected_df</span><span class="o">.</span><span class="n">timepoint</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">selected_df</span><span class="o">.</span><span class="n">stimfreq</span> <span class="o">==</span> <span class="n">freq</span><span class="p">)]</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;cell_tag&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SUP&#39;</span><span class="p">,</span><span class="s1">&#39;EXC&#39;</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax_arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span>
+    <span class="n">ax_arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;f = </span><span class="si">{:.1f}</span><span class="s2"> kHz&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">freq</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">))</span>
+    <span class="n">ax_arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/processing_18_0.png" src="_images/processing_18_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="average-response-for-different-trials">
+<h3>Average response for different trials<a class="headerlink" href="#average-response-for-different-trials" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>top row shows average traces across neurons for given trial types. each subplot inclues:</p>
 <ul>
@@ -664,129 +751,781 @@
 <li><p>avg overall</p></li>
 </ul>
 </li>
-<li><p>2nd row shows the distribution of EXC/SUP cells for each trial type</p></li>
+<li><p>2nd row is average lick traces</p></li>
+<li><p>3rd row shows the distribution of EXC/SUP cells for each trial type</p></li>
 <li><p>last row shows avg of the largest activation for EXC and SUP across trial types (if data were zscored, this plot would be more or les flat)</p></li>
 </ul>
-<div class="section" id="using-one-experiment-avg-across-cells-just-for-this-experiment">
-<h4>Using one experiment (avg across cells just for this experiment)<a class="headerlink" href="#using-one-experiment-avg-across-cells-just-for-this-experiment" title="Permalink to this headline">¶</a></h4>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;scabbers_2016-09-22&#39;</span>
-<span class="n">selected_df</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_all</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">]</span>
-
-<span class="n">_</span> <span class="o">=</span> <span class="n">mk_data_summary_plot</span><span class="p">(</span>
-    <span class="n">df</span><span class="o">=</span><span class="n">selected_df</span><span class="p">,</span>
-    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span>
-    <span class="n">dpi</span><span class="o">=</span><span class="mi">65</span><span class="p">,</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "b246539cf20c452688b259427b1ab4f5"}
-</script><img alt="_images/processing_17_1.png" src="_images/processing_17_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ken_2016-08-24&#39;</span>
-<span class="n">selected_df</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_all</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">]</span>
-
-<span class="n">_</span> <span class="o">=</span> <span class="n">mk_data_summary_plot</span><span class="p">(</span>
-    <span class="n">df</span><span class="o">=</span><span class="n">selected_df</span><span class="p">,</span>
-    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span>
-    <span class="n">dpi</span><span class="o">=</span><span class="mi">65</span><span class="p">,</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "3fba8f66982f44b88e2743b7804b3d25"}
-</script><img alt="_images/processing_18_1.png" src="_images/processing_18_1.png" />
-</div>
-</div>
-</div>
-<div class="section" id="observartions">
-<h4>Observartions:<a class="headerlink" href="#observartions" title="Permalink to this headline">¶</a></h4>
-<ul class="simple">
-<li><p>EXC/SUP distribution can be different for different experiments</p>
-<ul>
-<li><p>Usually EXC is statistically much more present (in all trials, to a varying extent)</p></li>
-<li><p>but sometimes there are cases where SUP dominates over EXC</p></li>
-</ul>
-</li>
-<li><p>This is most likely the result of heavy training, for example, in the 2nd figure above (corresponding to ‘ken_2016-08-24’) we see that almost half the neurons are suppressed during nontarget trials, but this is not the case for the first example, ‘scabbers_2016-09-22’</p></li>
-</ul>
-<p>Now let us look at the average statistics across all experiments and trials:</p>
-</div>
-<div class="section" id="global-avg">
-<h4>Global avg<a class="headerlink" href="#global-avg" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">mk_data_summary_plot</span><span class="p">(</span>
     <span class="n">df</span><span class="o">=</span><span class="n">df_all</span><span class="p">,</span>
-    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span>
-    <span class="n">dpi</span><span class="o">=</span><span class="mi">65</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "4ee13b6a657c49eb9d7862d8332b3060"}
-</script><img alt="_images/processing_21_1.png" src="_images/processing_21_1.png" />
+{"model_id": "", "version_major": 2, "version_minor": 0}
+</script><img alt="_images/processing_20_1.png" src="_images/processing_20_1.png" />
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="simply-looking-at-averages-might-be-misleading">
-<h2>Simply looking at averages might be misleading<a class="headerlink" href="#simply-looking-at-averages-might-be-misleading" title="Permalink to this headline">¶</a></h2>
-<p>There are cells that respond consistently across trials for the same trial type, but most cells have varying responses.  For example, figure below shows responses of an example cell from <strong>rodger_2017-08-20</strong> experiment during <strong>hit</strong> trials.  As we can see from the figure, the cell is higly responsive in roughly half of these trials and not very responsive for the rest.</p>
+<div class="section" id="single-cells-vs-population">
+<h2>Single cells vs Population<a class="headerlink" href="#single-cells-vs-population" title="Permalink to this headline">¶</a></h2>
+<p>Where is information about trial labels encoded? Can we reliably decode whether a single trace from a single cell is coming from a hit trial or a miss trial?  The answer is almost certainly not, but let’s quantify it here.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nt</span> <span class="o">=</span> <span class="mi">135</span>
-<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;rodger_2017-08-20&quot;</span>
-<span class="n">trial_type</span> <span class="o">=</span> <span class="s1">&#39;hit&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trials</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hit&#39;</span><span class="p">,</span> <span class="s1">&#39;miss&#39;</span><span class="p">,</span> <span class="s1">&#39;correctreject&#39;</span><span class="p">,</span> <span class="s1">&#39;falsealarm&#39;</span><span class="p">]</span>
+<span class="n">freqs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7000</span><span class="p">,</span> <span class="mi">9899</span><span class="p">,</span> <span class="mi">14000</span><span class="p">,</span> <span class="mi">19799</span><span class="p">]</span>
 
-<span class="n">selected_df</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df_all</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_all</span><span class="o">.</span><span class="n">trial</span> <span class="o">==</span> <span class="n">trial_type</span><span class="p">)]</span>
-<span class="n">nc</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">selected_df</span><span class="o">.</span><span class="n">cell_indx</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-<span class="n">ntrials</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">selected_df</span><span class="p">)</span> <span class="o">/</span> <span class="n">nc</span> <span class="o">/</span> <span class="n">nt</span><span class="p">)</span>
+<span class="n">l2i</span> <span class="o">=</span> <span class="p">{</span><span class="n">trial</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">trial</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">trials</span><span class="p">)}</span>
+<span class="n">i2l</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">lbl</span> <span class="k">for</span> <span class="n">lbl</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">l2i</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
-<span class="n">dff</span> <span class="o">=</span> <span class="n">selected_df</span><span class="o">.</span><span class="n">dff</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">nt</span><span class="p">,</span> <span class="n">ntrials</span><span class="p">,</span> <span class="n">nc</span><span class="p">)</span>
+<span class="n">f2i</span> <span class="o">=</span> <span class="p">{</span><span class="n">freq</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">freqs</span><span class="p">)}</span>
+<span class="n">i2f</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">freq</span> <span class="k">for</span> <span class="n">freq</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">f2i</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">h_load_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
 
-<span class="n">cindx</span> <span class="o">=</span> <span class="mi">40</span>
-<span class="n">data_to_plot</span> <span class="o">=</span> <span class="n">dff</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">cindx</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
-<span class="n">vminmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">data_to_plot</span><span class="p">))</span>
+<span class="n">dff_freq</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">dff_trial</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">df_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">df_trial</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 
-<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data_to_plot</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;seismic&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">data_to_plot</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">data_to_plot</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-           <span class="n">vmin</span><span class="o">=-</span><span class="nb">abs</span><span class="p">(</span><span class="n">vminmax</span><span class="p">),</span> <span class="n">vmax</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">vminmax</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;trial&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;trial to trial variability of an example cell from name = </span><span class="si">{}</span><span class="s1">, trial type = </span><span class="si">{}</span><span class="s1">&#39;</span>
-<span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">trial_type</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="n">behavior</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s1">&#39;behavior&#39;</span><span class="p">]</span>
+    <span class="n">passive</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s1">&#39;passive&#39;</span><span class="p">]</span>
+
+    <span class="n">good_cells_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">behavior</span><span class="p">[</span><span class="s2">&quot;good_cells&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">good_cells_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">passive</span><span class="p">[</span><span class="s2">&quot;good_cells&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">good_cells</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">good_cells_b</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">good_cells_p</span><span class="p">))</span>
+    <span class="n">good_cells</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">good_cells</span><span class="p">))</span>
+
+    <span class="n">stimfrequency</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">behavior</span><span class="p">[</span><span class="s1">&#39;trial_info&#39;</span><span class="p">][</span><span class="s1">&#39;stimfrequency&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">dff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">behavior</span><span class="p">[</span><span class="s1">&#39;dff&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)[</span><span class="o">...</span><span class="p">,</span> <span class="n">good_cells</span><span class="p">]</span>
+    <span class="n">nt</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">nc</span> <span class="o">=</span> <span class="n">dff</span><span class="o">.</span><span class="n">shape</span>
+    
+    
+    <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="n">trials</span><span class="p">:</span>
+        <span class="n">indxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">behavior</span><span class="p">[</span><span class="s1">&#39;trial_info&#39;</span><span class="p">][</span><span class="n">trial</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">dff_trial</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dff</span><span class="p">[:,</span> <span class="n">indxs</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">nt</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        
+        <span class="n">cell_indx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nc</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">cell_indx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">cell_indx</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">indxs</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;cell_indx&#39;</span><span class="p">:</span> <span class="n">cell_indx</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+            <span class="s1">&#39;trial&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">trial</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">indxs</span><span class="p">)</span> <span class="o">*</span> <span class="n">nc</span><span class="p">,</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">indxs</span><span class="p">)</span> <span class="o">*</span> <span class="n">nc</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">df_trial</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_trial</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data_dict</span><span class="p">)])</span>
+    
+    <span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">freqs</span><span class="p">:</span>
+        <span class="n">indxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">stimfrequency</span> <span class="o">==</span> <span class="n">freq</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">dff_freq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dff</span><span class="p">[:,</span> <span class="n">indxs</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">nt</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+        <span class="n">cell_indx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nc</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">cell_indx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">cell_indx</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">indxs</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;cell_indx&#39;</span><span class="p">:</span> <span class="n">cell_indx</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+            <span class="s1">&#39;freq&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">freq</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">indxs</span><span class="p">)</span> <span class="o">*</span> <span class="n">nc</span><span class="p">,</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">indxs</span><span class="p">)</span> <span class="o">*</span> <span class="n">nc</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">df_freq</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_freq</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data_dict</span><span class="p">)])</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        
+<span class="n">df_trial</span> <span class="o">=</span> <span class="n">reset_df</span><span class="p">(</span><span class="n">df_trial</span><span class="p">)</span>
+<span class="n">df_freq</span> <span class="o">=</span> <span class="n">reset_df</span><span class="p">(</span><span class="n">df_freq</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 34/34 [00:01&lt;00:00, 20.85it/s]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="frequency">
+<h3>Frequency<a class="headerlink" href="#frequency" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">dff_freq</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">df_freq</span><span class="o">.</span><span class="n">freq</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">labels</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((251419, 135), (251419,))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">f2i</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tst_indxs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">trn_indxs</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">freqs</span><span class="p">:</span>
+    <span class="n">indxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="n">freq</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">tst_indxs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">indxs</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">indxs</span><span class="p">)</span><span class="o">//</span><span class="mi">5</span><span class="p">])</span>
+    <span class="n">trn_indxs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">indxs</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">indxs</span><span class="p">)</span><span class="o">//</span><span class="mi">5</span><span class="p">:])</span>
+    
+<span class="n">tst_indxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">tst_indxs</span><span class="p">)</span>
+<span class="n">trn_indxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">trn_indxs</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="n">tst_indxs</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">trn_indxs</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="n">trange</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span>
+    <span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">,</span>
+    <span class="n">C</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lbfgs&#39;</span><span class="p">,</span>
+    <span class="n">max_iter</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">trn_indxs</span><span class="p">][:,</span> <span class="n">trange</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">trn_indxs</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">balanced_accuracy_score</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">tst_indxs</span><span class="p">][:,</span> <span class="n">trange</span><span class="p">])</span>
+<span class="n">balanced_accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">tst_indxs</span><span class="p">],</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.27155409142884673
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>classifier accuracy is ~27%, performs at chance level = 25%</p></li>
+<li><p>we can’t reliably decode stim frequency from individual calcium traces</p></li>
+</ul>
+</div>
+<div class="section" id="trial-labels">
+<h3>Trial labels<a class="headerlink" href="#trial-labels" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">dff_trial</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">df_trial</span><span class="o">.</span><span class="n">trial</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">labels</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((204736, 135), (204736,))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">l2i</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tst_indxs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">trn_indxs</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="n">trials</span><span class="p">:</span>
+    <span class="n">indxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">labels</span> <span class="o">==</span> <span class="n">trial</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">tst_indxs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">indxs</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">indxs</span><span class="p">)</span><span class="o">//</span><span class="mi">5</span><span class="p">])</span>
+    <span class="n">trn_indxs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">indxs</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">indxs</span><span class="p">)</span><span class="o">//</span><span class="mi">5</span><span class="p">:])</span>
+    
+<span class="n">tst_indxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">tst_indxs</span><span class="p">)</span>
+<span class="n">trn_indxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">trn_indxs</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="n">tst_indxs</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">trn_indxs</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span>
+    <span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">,</span>
+    <span class="n">C</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lbfgs&#39;</span><span class="p">,</span>
+    <span class="n">max_iter</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">trn_indxs</span><span class="p">][:,</span> <span class="n">trange</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">trn_indxs</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">tst_indxs</span><span class="p">][:,</span> <span class="n">trange</span><span class="p">])</span>
+<span class="n">balanced_accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">tst_indxs</span><span class="p">],</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2677700838514673
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>again, classifier accuracy is ~27%, performs at chance level = 25%</p></li>
+<li><p>we can’t reliably decode trial labels from individual calcium traces</p></li>
+</ul>
+</div>
+<div class="section" id="from-these-analysis-we-conclude-that-we-need-population-level-analysis-duh">
+<h3>From these analysis we conclude that we need population level analysis (duh)<a class="headerlink" href="#from-these-analysis-we-conclude-that-we-need-population-level-analysis-duh" title="Permalink to this headline">¶</a></h3>
+<p>Now next question is exploring calcium traces and if there are recurring themes in responses.</p>
+</div>
+</div>
+<div class="section" id="nearest-neighbor-analysis">
+<h2>Nearest Neighbor analysis<a class="headerlink" href="#nearest-neighbor-analysis" title="Permalink to this headline">¶</a></h2>
+<p>In this section I use nearest neighbor kind of analysis to see if there are some types of responses that occur more in certain trial types.</p>
+<div class="section" id="id1">
+<h3>Trial labels<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">dff_trial</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">df_trial</span><span class="o">.</span><span class="n">trial</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">NearestNeighbors</span>
+
+<span class="n">nn</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">nn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NearestNeighbors(n_jobs=-1, n_neighbors=101, radius=0.4)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="connectivity-matrix">
+<h4>Connectivity matrix<a class="headerlink" href="#connectivity-matrix" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">distances</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">kneighbors_graph</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plot-top-30-neighbors">
+<h4>Plot top 30 neighbors<a class="headerlink" href="#plot-top-30-neighbors" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">1508</span>
+<span class="n">neighbor_indxs</span> <span class="o">=</span> <span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">neighbor_indxs</span> <span class="o">=</span> <span class="n">neighbor_indxs</span><span class="p">[</span><span class="n">neighbor_indxs</span> <span class="o">!=</span> <span class="n">i</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;source&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">neighbor_indxs</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/processing_23_0.png" src="_images/processing_23_0.png" />
+<img alt="_images/processing_46_0.png" src="_images/processing_46_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="find-label-for-top-30-neighbors">
+<h4>Find label for top 30 neighbors<a class="headerlink" href="#find-label-for-top-30-neighbors" title="Permalink to this headline">¶</a></h4>
+<p>label source data point</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;correctreject&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>and its neighbors</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span><span class="p">[</span><span class="n">neighbor_indxs</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;falsealarm&#39;, &#39;correctreject&#39;, &#39;falsealarm&#39;, &#39;correctreject&#39;,
+       &#39;hit&#39;, &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;hit&#39;,
+       &#39;falsealarm&#39;, &#39;correctreject&#39;, &#39;miss&#39;, &#39;miss&#39;, &#39;correctreject&#39;,
+       &#39;correctreject&#39;, &#39;falsealarm&#39;, &#39;falsealarm&#39;, &#39;falsealarm&#39;,
+       &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;hit&#39;,
+       &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;hit&#39;, &#39;falsealarm&#39;, &#39;hit&#39;,
+       &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;hit&#39;, &#39;miss&#39;,
+       &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;correctreject&#39;,
+       &#39;hit&#39;, &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;hit&#39;, &#39;correctreject&#39;,
+       &#39;hit&#39;, &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;hit&#39;,
+       &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;hit&#39;, &#39;hit&#39;,
+       &#39;hit&#39;, &#39;hit&#39;, &#39;falsealarm&#39;, &#39;correctreject&#39;, &#39;hit&#39;, &#39;hit&#39;, &#39;hit&#39;,
+       &#39;hit&#39;, &#39;hit&#39;, &#39;correctreject&#39;, &#39;falsealarm&#39;, &#39;correctreject&#39;,
+       &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;falsealarm&#39;, &#39;correctreject&#39;,
+       &#39;hit&#39;, &#39;hit&#39;, &#39;hit&#39;, &#39;falsealarm&#39;, &#39;miss&#39;, &#39;correctreject&#39;, &#39;hit&#39;,
+       &#39;correctreject&#39;, &#39;falsealarm&#39;, &#39;hit&#39;, &#39;correctreject&#39;,
+       &#39;falsealarm&#39;, &#39;hit&#39;, &#39;falsealarm&#39;, &#39;hit&#39;, &#39;correctreject&#39;, &#39;miss&#39;,
+       &#39;falsealarm&#39;, &#39;correctreject&#39;, &#39;hit&#39;, &#39;correctreject&#39;,
+       &#39;falsealarm&#39;, &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;hit&#39;,
+       &#39;correctreject&#39;, &#39;hit&#39;, &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;hit&#39;,
+       &#39;correctreject&#39;, &#39;correctreject&#39;, &#39;miss&#39;], dtype=object)
+</pre></div>
 </div>
 </div>
 </div>
 </div>
+<div class="section" id="do-neighbors-have-more-or-less-the-same-label">
+<h4>Do neighbors have more or less the same label?<a class="headerlink" href="#do-neighbors-have-more-or-less-the-same-label" title="Permalink to this headline">¶</a></h4>
+<p>If yes, then there is information in each trace about trial types</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coocerances</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;</span><span class="si">{:s}</span><span class="s1">-</span><span class="si">{:s}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">):</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">t1</span> <span class="ow">in</span> <span class="n">trials</span> <span class="k">for</span> <span class="n">t2</span> <span class="ow">in</span> <span class="n">trials</span><span class="p">}</span>
 
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))):</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">neighbor_indxs</span> <span class="o">=</span> <span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">neighbor_indxs</span> <span class="o">=</span> <span class="n">neighbor_indxs</span><span class="p">[</span><span class="n">neighbor_indxs</span> <span class="o">!=</span> <span class="n">i</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">t2</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">[</span><span class="n">neighbor_indxs</span><span class="p">]:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:s}</span><span class="s1">-</span><span class="si">{:s}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">)</span>
+        <span class="n">coocerances</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 204736/204736 [00:27&lt;00:00, 7487.21it/s]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">joint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">trials</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">trials</span><span class="p">)))</span>
 
-<script type="application/vnd.jupyter.widget-state+json">
-{"state": {"e8a2777b77494d248e84418904702291": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a72e8acc84f345c88263d48175ac1654": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "e71210a70d3d4e9087a3126255a2d58d": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_e8a2777b77494d248e84418904702291", "max": 4.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_a72e8acc84f345c88263d48175ac1654", "value": 4.0}}, "8ceda041e2734dda9b01fe47928c56a4": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "b060678daba74db5919075b36f95fa4d": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "0c5e771380754f36b085ae20029c96ac": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_8ceda041e2734dda9b01fe47928c56a4", "placeholder": "\u200b", "style": "IPY_MODEL_b060678daba74db5919075b36f95fa4d", "value": " 4/4 [02:57&lt;00:00, 46.53s/it]"}}, "ab67346f2ffc4a9d810546665846c2d5": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "b246539cf20c452688b259427b1ab4f5": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_e71210a70d3d4e9087a3126255a2d58d", "IPY_MODEL_0c5e771380754f36b085ae20029c96ac"], "layout": "IPY_MODEL_ab67346f2ffc4a9d810546665846c2d5"}}, "35b14132e3d94fba9b3a598dcd41c15f": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "58b706cd78cb428bb93db51375bf4e84": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "1b2132901ac54239917456674201e657": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_35b14132e3d94fba9b3a598dcd41c15f", "max": 4.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_58b706cd78cb428bb93db51375bf4e84", "value": 4.0}}, "a909b8c485f74f63b2de7a44dcd1cef2": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "1625a757491044ed97bcc5f3cc549a35": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "f3515a108b8644789dee9d675b573446": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_a909b8c485f74f63b2de7a44dcd1cef2", "placeholder": "\u200b", "style": "IPY_MODEL_1625a757491044ed97bcc5f3cc549a35", "value": " 4/4 [02:13&lt;00:00, 34.23s/it]"}}, "6fb590f4de7b4558859c1e65300e8166": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "3fba8f66982f44b88e2743b7804b3d25": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_1b2132901ac54239917456674201e657", "IPY_MODEL_f3515a108b8644789dee9d675b573446"], "layout": "IPY_MODEL_6fb590f4de7b4558859c1e65300e8166"}}, "238122b1f0d34df38cc86b460b153cc0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d01da25811cb49d98eee353ea2a9bf19": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": "initial"}}, "68a198937c1a48c6a86ccee85ef7eec2": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "", "description": "100%", "description_tooltip": null, "layout": "IPY_MODEL_238122b1f0d34df38cc86b460b153cc0", "max": 4.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_d01da25811cb49d98eee353ea2a9bf19", "value": 4.0}}, "54bcaab59e4d41b2acd307222be54610": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "0acd68e671d9465696271a53ffb4d302": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "b22619d3f2e74a4b886df651d393162e": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_54bcaab59e4d41b2acd307222be54610", "placeholder": "\u200b", "style": "IPY_MODEL_0acd68e671d9465696271a53ffb4d302", "value": " 4/4 [17:31&lt;00:00, 275.41s/it]"}}, "b4cdf2cbd7d34ef0bf71e75e0c8dd692": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4ee13b6a657c49eb9d7862d8332b3060": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_68a198937c1a48c6a86ccee85ef7eec2", "IPY_MODEL_b22619d3f2e74a4b886df651d393162e"], "layout": "IPY_MODEL_b4cdf2cbd7d34ef0bf71e75e0c8dd692"}}}, "version_major": 2, "version_minor": 0}
-</script>
+<span class="k">for</span> <span class="n">t1</span> <span class="ow">in</span> <span class="n">trials</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">t2</span> <span class="ow">in</span> <span class="n">trials</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:s}</span><span class="s1">-</span><span class="si">{:s}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">)</span>
+        <span class="n">joint</span><span class="p">[</span><span class="n">l2i</span><span class="p">[</span><span class="n">t1</span><span class="p">],</span> <span class="n">l2i</span><span class="p">[</span><span class="n">t2</span><span class="p">]]</span> <span class="o">=</span> <span class="n">coocerances</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        
+<span class="n">joint</span> <span class="o">/=</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
+<span class="n">p_x</span> <span class="o">=</span> <span class="n">joint</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+<span class="n">p_y</span> <span class="o">=</span> <span class="n">joint</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">y_given_x</span> <span class="o">=</span> <span class="n">joint</span> <span class="o">/</span> <span class="n">p_x</span>
+<span class="n">x_given_y</span> <span class="o">=</span> <span class="n">joint</span> <span class="o">/</span> <span class="n">p_y</span>
+
+<span class="n">kl</span> <span class="o">=</span> <span class="n">y_given_x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y_given_x</span> <span class="o">/</span> <span class="n">p_y</span><span class="p">)</span>
+<span class="n">mi</span> <span class="o">=</span> <span class="n">p_x</span> <span class="o">*</span> <span class="n">y_given_x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y_given_x</span> <span class="o">/</span> <span class="n">p_y</span><span class="p">)</span>
+<span class="n">mi_max</span> <span class="o">=</span> <span class="n">p_x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="n">p_y</span> <span class="o">+</span> <span class="mf">1e-12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">joint</span> <span class="o">/</span> <span class="n">p_x</span> <span class="o">/</span> <span class="n">p_y</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">i2l</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">i2l</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">rotation</span><span class="o">=-</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">i2l</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">i2l</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mi: </span><span class="si">{:.2e}</span><span class="s1">,  max mi: </span><span class="si">{:.2e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mi</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">mi_max</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/processing_53_0.png" src="_images/processing_53_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mi: 1.27e-03,  max mi: 1.19e+00
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="conclusion-there-is-not-much-of-shared-structure-in-single-cell-traces-as-a-function-of-trial-label">
+<h4>Conclusion: there is not much of shared structure in single cell traces as a function of trial label<a class="headerlink" href="#conclusion-there-is-not-much-of-shared-structure-in-single-cell-traces-as-a-function-of-trial-label" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="stim-frequencies">
+<h3>Stim frequencies<a class="headerlink" href="#stim-frequencies" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">dff_freq</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">df_freq</span><span class="o">.</span><span class="n">freq</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">NearestNeighbors</span>
+
+<span class="n">nn</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">nn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NearestNeighbors(n_jobs=-1, n_neighbors=101, radius=0.4)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h4>Connectivity matrix<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">distances</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">kneighbors_graph</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h4>Plot top 30 neighbors<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">neighbor_indxs</span> <span class="o">=</span> <span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">neighbor_indxs</span> <span class="o">=</span> <span class="n">neighbor_indxs</span><span class="p">[</span><span class="n">neighbor_indxs</span> <span class="o">!=</span> <span class="n">i</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;source&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">neighbor_indxs</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/processing_61_0.png" src="_images/processing_61_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h4>Find label for top 30 neighbors<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p>label source data point</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9899
+</pre></div>
+</div>
+</div>
+</div>
+<p>and its neighbors</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span><span class="p">[</span><span class="n">neighbor_indxs</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 9899, 19799, 19799, 19799,  9899,  9899, 19799, 19799, 14000,
+        9899,  9899,  9899, 14000, 19799,  7000, 14000,  9899,  9899,
+        7000, 14000,  9899,  7000,  9899, 14000, 14000, 19799, 14000,
+       19799,  7000,  9899, 14000,  7000,  7000,  9899, 19799, 19799,
+        9899,  9899,  9899, 19799,  9899,  7000, 14000, 19799, 14000,
+        9899,  9899,  7000, 14000,  9899, 14000,  9899, 14000, 14000,
+        9899,  7000, 14000,  9899, 14000,  9899,  9899, 14000, 14000,
+        7000,  7000,  9899,  9899, 14000,  9899, 19799, 19799,  7000,
+       14000, 19799,  7000,  7000, 14000, 19799, 19799,  7000,  9899,
+       14000, 14000, 14000, 14000, 19799,  7000, 14000, 19799,  9899,
+       19799,  9899, 14000, 14000, 19799, 19799, 19799, 19799, 19799,
+       14000], dtype=int16)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h4>Do neighbors have more or less the same label?<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p>If yes, then there is information in each trace about stim frequency</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coocerances</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;</span><span class="si">{:d}</span><span class="s1">-</span><span class="si">{:d}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">):</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">f1</span> <span class="ow">in</span> <span class="n">freqs</span> <span class="k">for</span> <span class="n">f2</span> <span class="ow">in</span> <span class="n">freqs</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))):</span>
+    <span class="n">f1</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">neighbor_indxs</span> <span class="o">=</span> <span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">neighbor_indxs</span> <span class="o">=</span> <span class="n">neighbor_indxs</span><span class="p">[</span><span class="n">neighbor_indxs</span> <span class="o">!=</span> <span class="n">i</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">f2</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">[</span><span class="n">neighbor_indxs</span><span class="p">]:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:d}</span><span class="s1">-</span><span class="si">{:d}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">)</span>
+        <span class="n">coocerances</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 251419/251419 [00:48&lt;00:00, 5186.60it/s]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">joint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">freqs</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">freqs</span><span class="p">)))</span>
+
+<span class="k">for</span> <span class="n">f1</span> <span class="ow">in</span> <span class="n">freqs</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">f2</span> <span class="ow">in</span> <span class="n">freqs</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:d}</span><span class="s1">-</span><span class="si">{:d}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">)</span>
+        <span class="n">joint</span><span class="p">[</span><span class="n">f2i</span><span class="p">[</span><span class="n">f1</span><span class="p">],</span> <span class="n">f2i</span><span class="p">[</span><span class="n">f2</span><span class="p">]]</span> <span class="o">=</span> <span class="n">coocerances</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+<span class="n">joint</span> <span class="o">/=</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">p_x</span> <span class="o">=</span> <span class="n">joint</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+<span class="n">p_y</span> <span class="o">=</span> <span class="n">joint</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">y_given_x</span> <span class="o">=</span> <span class="n">joint</span> <span class="o">/</span> <span class="n">p_x</span>
+<span class="n">x_given_y</span> <span class="o">=</span> <span class="n">joint</span> <span class="o">/</span> <span class="n">p_y</span>
+
+<span class="n">kl</span> <span class="o">=</span> <span class="n">y_given_x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y_given_x</span> <span class="o">/</span> <span class="n">p_y</span><span class="p">)</span>
+<span class="n">mi</span> <span class="o">=</span> <span class="n">p_x</span> <span class="o">*</span> <span class="n">y_given_x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y_given_x</span> <span class="o">/</span> <span class="n">p_y</span><span class="p">)</span>
+<span class="n">mi_max</span> <span class="o">=</span> <span class="n">p_x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="n">p_y</span> <span class="o">+</span> <span class="mf">1e-12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">joint</span> <span class="o">/</span> <span class="n">p_x</span> <span class="o">/</span> <span class="n">p_y</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">i2f</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">i2f</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">rotation</span><span class="o">=-</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">i2f</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">i2f</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mi: </span><span class="si">{:.2e}</span><span class="s1">,  max mi: </span><span class="si">{:.2e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mi</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">mi_max</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/processing_68_0.png" src="_images/processing_68_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mi: 3.02e-04,  max mi: 1.39e+00
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="conclusion-similarly-there-is-not-much-of-shared-structure-in-single-cell-traces-as-a-function-of-stim-frequency">
+<h4>Conclusion: similarly, there is not much of shared structure in single cell traces as a function of stim frequency<a class="headerlink" href="#conclusion-similarly-there-is-not-much-of-shared-structure-in-single-cell-traces-as-a-function-of-stim-frequency" title="Permalink to this headline">¶</a></h4>
+<p>However, from stucture of the joint probability distribution we see that there is information with discriminatory power encoded in individual traces that separates target with non target frequencies.  All the analysis so far hit that we must focus on population level analysis somehow.</p>
+</div>
+</div>
+</div>
+<div class="section" id="simply-looking-at-averages-is-misleading">
+<h2>Simply looking at averages is misleading<a class="headerlink" href="#simply-looking-at-averages-is-misleading" title="Permalink to this headline">¶</a></h2>
+<p>There are cells that respond consistently across trials for the same trial type, but most cells have varying responses.  Below, I am plotting responses from individual cells across trials.  There are 3 horizontal dashed lines that separate trials in the following order. Top to bottom: <strong>hit</strong>, <strong>miss</strong>, <strong>correctreject</strong>, and <strong>falsealaram</strong>.  As we can see from these figures, different cells exhibit different selectivity.  Some behave almost the same during different trials, and some have clear responses that has discriminatory power.</p>
+<div class="section" id="example-1-a-cell-that-is-highly-active-during-hit-and-falsealarm-trials">
+<h3>Example 1: a cell that is highly active during hit and falsealarm trials<a class="headerlink" href="#example-1-a-cell-that-is-highly-active-during-hit-and-falsealarm-trials" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">mk_single_cell_plot</span><span class="p">(</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">df_all</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;rodger_2017-08-20&quot;</span><span class="p">,</span>
+    <span class="n">cell</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "13ac1ba18880489ba095a387a20f6d73", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<img alt="_images/processing_72_2.png" src="_images/processing_72_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="example-2-a-cell-that-is-highly-active-during-hit-but-not-consistently">
+<h3>Example 2: a cell that is highly active during hit, but not consistently.<a class="headerlink" href="#example-2-a-cell-that-is-highly-active-during-hit-but-not-consistently" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">mk_single_cell_plot</span><span class="p">(</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">df_all</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;rodger_2017-08-20&quot;</span><span class="p">,</span>
+    <span class="n">cell</span><span class="o">=</span><span class="mi">36</span><span class="p">,</span>
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "5960d15c6ff0414092ad7d5d195b0e57", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<img alt="_images/processing_74_2.png" src="_images/processing_74_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="example-3-excited-during-hit-and-falsealaram-inhibited-during-miss-and-correctreject">
+<h3>Example 3: excited during hit and falsealaram, inhibited during miss and correctreject<a class="headerlink" href="#example-3-excited-during-hit-and-falsealaram-inhibited-during-miss-and-correctreject" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">mk_single_cell_plot</span><span class="p">(</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">df_all</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;rodger_2017-08-20&quot;</span><span class="p">,</span>
+    <span class="n">cell</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "8f6c94840d06489b8210627740e2f8b6", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<img alt="_images/processing_76_2.png" src="_images/processing_76_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="example-4-seems-random">
+<h3>Example 4: seems random<a class="headerlink" href="#example-4-seems-random" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">mk_single_cell_plot</span><span class="p">(</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">df_all</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;rodger_2017-08-20&quot;</span><span class="p">,</span>
+    <span class="n">cell</span><span class="o">=</span><span class="mi">37</span><span class="p">,</span>
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "ca3c06946e4049d1b43e84937e78566d", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<img alt="_images/processing_78_2.png" src="_images/processing_78_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="example-5-highly-active-during-correctreject-and-to-some-extent-during-hit">
+<h3>Example 5: highly active during correctreject, and to some extent during hit<a class="headerlink" href="#example-5-highly-active-during-correctreject-and-to-some-extent-during-hit" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">mk_single_cell_plot</span><span class="p">(</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">df_all</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;scabbers_2016-09-23&quot;</span><span class="p">,</span>
+    <span class="n">cell</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "5cd946dafc10453590145d3ce47c2869", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<img alt="_images/processing_80_2.png" src="_images/processing_80_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="example-6-can-be-used-to-classify-hit-vs-antything-else">
+<h3>Example 6: can be used to classify hit vs antything else<a class="headerlink" href="#example-6-can-be-used-to-classify-hit-vs-antything-else" title="Permalink to this headline">¶</a></h3>
+<p>But even this cell shows some variance during hit trials</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">mk_single_cell_plot</span><span class="p">(</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">df_all</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;scabbers_2016-09-23&quot;</span><span class="p">,</span>
+    <span class="n">cell</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "0fd3ad5ec958477fb28649a7a1d3b718", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<img alt="_images/processing_82_2.png" src="_images/processing_82_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="example-7-another-random-cell">
+<h3>Example 7: another random cell<a class="headerlink" href="#example-7-another-random-cell" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">mk_single_cell_plot</span><span class="p">(</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">df_all</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;scabbers_2016-09-23&quot;</span><span class="p">,</span>
+    <span class="n">cell</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "175c639bd75c41c698ce60986e688d35", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<img alt="_images/processing_84_2.png" src="_images/processing_84_2.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<p>It is extremely unlikely that we will be able to detect trial labels by just looking at individual traces from individual cells.  We need a population level analysis (this is obvious, but had to check a few things to get this out of my system).  How can we do this?  A major challenge remains:</p>
+<blockquote>
+<div><p><strong>How can we combine datasets, knowing that each experiment is different with different number of cells. Each cell in each trial in each experiment is doing something different.</strong></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>I’m thinking of a few possiblities, now informed by all of these analysis.  Will design simulation to test wether those ideas can work.</p></li>
+<li><p>I will try to concretely identify the hypothesis and assumptions to discuss and make sure they are reasonable.  Basically I’m inspired by random projection theory and <a class="reference external" href="https://www.biorxiv.org/content/10.1101/214262v2">this Ganguli paper</a>.</p></li>
+</ul>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {

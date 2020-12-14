@@ -25,8 +25,8 @@
     href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -48,8 +48,6 @@
     <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -386,7 +384,7 @@
                 
   <div class="section" id="linear-discriminant-analysis-lda">
 <h1>Linear Discriminant Analysis (LDA)<a class="headerlink" href="#linear-discriminant-analysis-lda" title="Permalink to this headline">¶</a></h1>
-<p>The main motivation behind LDA is to find a lower dimensional projection of data that maximizes <strong>between class</strong> distances, while minimizing <strong>within class</strong> distances of data points.  This dimensionality reduction will lead to a maximally separable projection of the data, and in a sense, one can consider this as supervised PCA.  The method is described in chapter 4 of the the famous <a class="reference external" href="https://web.stanford.edu/%7Ehastie/Papers/ESLII.pdf">ESL textbook</a>.</p>
+<p>The main motivation behind LDA is to find a lower dimensional projection of data that maximizes <strong>between class</strong> distances, while minimizing <strong>within class</strong> distances of data points.  This dimensionality reduction will lead to a maximally separable projection of the data, and in a sense, one can consider this as supervised PCA.  The method is described in chapter 4 of the the famous <a class="reference external" href="https://web.stanford.edu/~hastie/Papers/ESLII.pdf">ESL textbook</a>.</p>
 <p>For each experiment, the goal is to find a low-dimensional (<span class="math notranslate nohighlight">\(d=3\)</span>) space that maximally separates either {<strong>hit, miss, correctreject,</strong> and <strong>falsealarm</strong>} trials, or {<strong>target7k, target14k, nontarget14k,</strong> and <strong>nontarget20k</strong>} trials. This way, we can visualize trajectories to see check whether they diverge as time goes on. Furthermore, the resulting projection of features down to this smaller space can be used to learn a linear classifier.  Results show that we can indeed learn a low-<span class="math notranslate nohighlight">\(d\)</span> space where trial trajectories diverge, while maintaining a high classification score as well.  Results obtained using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.discriminant_analysis.LinearDiscriminantAnalysis.html">sklearn’s implementation of LDA</a>.</p>
 <div class="section" id="imports">
 <h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
@@ -412,6 +410,19 @@
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">github_path</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">utils.plot_functions</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">analysis.lda_analysis</span> <span class="kn">import</span> <span class="n">LDA</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">8477</span><span class="n">ba26d606</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">github_path</span> <span class="o">=</span> <span class="n">pjoin</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">],</span> <span class="s1">&#39;Dropbox/git/A1ToneDiscrimination/&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">github_path</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">19</span> <span class="kn">from</span> <span class="nn">utils.plot_functions</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="kn">from</span> <span class="nn">analysis.lda_analysis</span> <span class="kn">import</span> <span class="n">LDA</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;utils&#39;
 </pre></div>
 </div>
 </div>
@@ -445,9 +456,6 @@
 <span class="n">_</span> <span class="o">=</span> <span class="n">mk_lda_summary_plot</span><span class="p">(</span><span class="n">load_dir</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">70</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_7_0.png" src="_images/lda_7_0.png" />
 </div>
 </div>
 </div>
@@ -484,9 +492,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_10_0.png" src="_images/lda_10_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="d-shuffled">
@@ -507,9 +512,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_12_0.png" src="_images/lda_12_0.png" />
-</div>
 </div>
 </div>
 </div>
@@ -524,9 +526,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_14_0.png" src="_images/lda_14_0.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -535,9 +534,6 @@
     <span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">embed</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_15_0.png" src="_images/lda_15_0.png" />
 </div>
 </div>
 </div>
@@ -558,9 +554,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_18_0.png" src="_images/lda_18_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="id2">
@@ -578,9 +571,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_20_0.png" src="_images/lda_20_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="id3">
@@ -597,9 +587,6 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_22_0.png" src="_images/lda_22_0.png" />
 </div>
 </div>
 </div>
@@ -620,9 +607,6 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_24_0.png" src="_images/lda_24_0.png" />
 </div>
 </div>
 </div>
@@ -646,9 +630,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_28_0.png" src="_images/lda_28_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="id5">
@@ -667,9 +648,6 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_31_0.png" src="_images/lda_31_0.png" />
 </div>
 </div>
 </div>
@@ -691,9 +669,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_33_0.png" src="_images/lda_33_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="id8">
@@ -710,9 +685,6 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_35_0.png" src="_images/lda_35_0.png" />
 </div>
 </div>
 </div>
@@ -734,9 +706,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_37_0.png" src="_images/lda_37_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="id10">
@@ -753,9 +722,6 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_39_0.png" src="_images/lda_39_0.png" />
 </div>
 </div>
 </div>
@@ -776,9 +742,6 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/lda_41_0.png" src="_images/lda_41_0.png" />
 </div>
 </div>
 </div>

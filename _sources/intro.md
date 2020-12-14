@@ -8,4 +8,5 @@ In this report I will summarize the results so far for *A1 Tone Discrimination* 
 - 3rd update: Oct 28, 2020 
 - 4th update: Nov 1, 2020
 - 5th update: Nov 13, 2020
-- **6th update: Nov 16, 2020 (current)**
+- 6th update: Nov 16, 2020
+- **7th update: Dec 13, 2020 (current)**
